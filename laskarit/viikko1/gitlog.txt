@@ -1,0 +1,114 @@
+git log --stat|cat
+commit 97f1454ba4beb088b5a39a38b865e16887c0b15a
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 16:23:09 2019 +0200
+
+    file2 renamed file22 and file1 deleted
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit b0ab57b29df5cfc39f456802ffec3bd4025d0e14
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 15:59:59 2019 +0200
+
+    added tiedostoja and 3 files
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit e12dfac4fe7658f336509a95856d0ce53949b993
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 15:53:55 2019 +0200
+
+    eka.txt and kolmas.txt modified
+
+ eka.txt    | 17 +++++++++--------
+ kolmas.txt | 13 ++++++++++++-
+ 2 files changed, 21 insertions(+), 9 deletions(-)
+
+commit 4ababd18da98c1d7bc63eb0879eac51420d7adce
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 15:50:20 2019 +0200
+
+    tiedosto.txt renamed eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit adca731e86743b5959a69e714a390f8efe383671
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 15:48:19 2019 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 59d944f603f3608b1b756cded0dd2a30dbecd48f
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 15:34:47 2019 +0200
+
+    tiedosto.txt poisto ja lisäys
+
+ tiedosto.txt | 95 ++++--------------------------------------------------------
+ 1 file changed, 5 insertions(+), 90 deletions(-)
+
+commit 0fb43d335d7a9c93d5fa009ddc85442e2a6bac69
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 15:24:47 2019 +0200
+
+    tiedosto.txt lisätty tekstiä
+
+ tiedosto.txt | 120 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 119 insertions(+), 1 deletion(-)
+
+commit c225cb271d24bccc108d1d21806e56c095472756
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 12:28:39 2019 +0200
+
+    stuff ja jokin.txt luotu
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d247049133767b082d402ca52643d064c45430d6
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 12:26:37 2019 +0200
+
+    toinen.txt ja kolmas.txt muutettu
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 6f361b14b17fc722a6b8321f73da8b02fe221092
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 12:24:44 2019 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e7b539286cb6a51af0915893b7ff4be9603c755e
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 12:20:52 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 7f9e27fee817ec637dff3288754b77ef8d8b9563
+Author: Qubelka <42945433+qubelka@users.noreply.github.com>
+Date:   Thu Mar 14 12:18:06 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
