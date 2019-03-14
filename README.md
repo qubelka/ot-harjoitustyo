@@ -1,5 +1,6 @@
 # **Ohjelmistotekniikka, harjoitustyö**
 ## **Tehtävät**
 ### **Viikko 1**
-[gitlog.txt](gitlog.txt)
-[komentorivi.txt](komentorivi.txt)
+[gitlog.txt](laskarit/viikko1/gitlog.txt)
+
+[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
