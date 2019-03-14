@@ -1,6 +1,5 @@
 # **Ohjelmistotekniikka, harjoitustyö**
 ## **Tehtävät**
 ### **Viikko 1**
-[gitlog.txt] (gitlog.txt)
- [link to Google!](http://google.com)
-[komentorivi.txt] (komentorivi.txt)
+[gitlog.txt](gitlog.txt)
+[komentorivi.txt](komentorivi.txt)
