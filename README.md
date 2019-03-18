@@ -7,6 +7,6 @@
 [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
 
 ### **Viikko 2**
-
+[1.Maksukortti](laskarit/viikko2/Maksukortti)
 ### **Dokumentaatio**
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
