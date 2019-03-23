@@ -10,5 +10,8 @@
 [1. Maksukortti](laskarit/viikko2/Maksukortti)
 
 [2. Unicafe](laskarit/viikko2/Unicafe)
+
+[3. Testikattavuus screenshot](laskarit/viikko2/Screenshot_2019-03-23%20com%20mycompany%20unicafe.png)
+
 ### **Dokumentaatio**
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
