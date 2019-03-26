@@ -9,6 +9,13 @@ säätilaa havainnollistavan kuvan ![kuvan](http://openweathermap.org/img/w/13n.
 
 Ei erikoisia käyttäjäryhmiä. 
 
+## **Käyttöliittymäluonnos**
+
+Sovellus periaatteessa koostuu kahdesta näkymästä: perusvalikko ja "my locations" -valikko. "units"-toiminto toteutetaan InlineKeyaboardin avulla, joten sille ei ole ReplyKeyboard-tyyppistä näkymää, ja 
+"search by name" -toiminto ei vaadi näppäimistöä ollenkaan.
+  
+![luonnos](https://github.com/qubelka/harjoittelua/blob/master/v2/Telegram-bot%20cropped.jpg)
+
 ## **Perusversion tarjoama toiminnallisuus**
 
 Säätietoja voi hakea kaupungin (tai vaihtoehtoisesti kaupungin ja maan) perusteella yhdellä kielellä - englannilla. Käyttäjä voi valita, näytetäänkö lämpötila Celsius- vai Farenheit-asteina. 
