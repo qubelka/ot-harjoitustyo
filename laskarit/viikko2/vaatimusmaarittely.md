@@ -14,7 +14,7 @@ Ei erikoisia käyttäjäryhmiä.
 Sovellus periaatteessa koostuu kahdesta näkymästä: perusvalikko ja "my locations" -valikko. "units"-toiminto toteutetaan InlineKeyaboardin avulla, joten sille ei ole ReplyKeyboard-tyyppistä näkymää, ja 
 "search by name" -toiminto ei vaadi näppäimistöä ollenkaan.
   
-![luonnos](https://github.com/qubelka/harjoittelua/blob/master/v2/Telegram-bot%20cropped.jpg)
+![luonnos](https://github.com/qubelka/ot-harjoitustyo/blob/master/laskarit/viikko2/Telegram-bot%20cropped.jpg)
 
 ## **Perusversion tarjoama toiminnallisuus**
 
