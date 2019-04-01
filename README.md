@@ -1,20 +1,18 @@
-# **Ohjelmistotekniikka, harjoitustyö**
+# **Telegram weather-bot**
 
-## **Tehtävät**
-### **Viikko 1**
-[gitlog.txt](laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-
-### **Viikko 2**
-[1. Maksukortti](laskarit/viikko2/Maksukortti)
-
-[2. Unicafe](laskarit/viikko2/Unicafe)
-
-[3. Testikattavuus screenshot](laskarit/viikko2/Screenshot_2019-03-23%20com%20mycompany%20unicafe.png)
-
-[4. Vaatimusmäärittely](laskarit/viikko2/vaatimusmaarittely.md)
+Sääbotin avulla käyttäjä voi hakea tämänhetkiset säätiedot yhdestä kaupungista ympäri maailmaa. 
+Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden ja säätilaa havainnollistavan kuvan.
 
 ### **Dokumentaatio**
 
+[Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
+
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
+
+### **Releaset**
+
+[Viikko 3](laskarit/viikko3)
+
+
+
+
