@@ -5,23 +5,23 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [WeatherBot](WeatherBot)
 
-### **Dokumentaatio**
+## **Dokumentaatio**
 
 [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 
-### **Viikko3**
+## **Viikko3**
 
 [Viikko 3](laskarit/viikko3)
 
-### **Komentorivitoiminnot**
+## **Komentorivitoiminnot**
 
-## **Ohjelman suoritus**
+### **Ohjelman suoritus**
 
 `mvn compile exec:java -Dexec.mainClass=tgbots.weatherbot.Main` 
 
-## **Suoritettavan jarin generointi**
+### **Suoritettavan jarin generointi**
 
 Komento
 
