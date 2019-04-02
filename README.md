@@ -11,10 +11,6 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 
-## **Viikko3**
-
-[Viikko 3](laskarit/viikko3)
-
 ## **Komentorivitoiminnot**
 
 ### **Ohjelman suoritus**
