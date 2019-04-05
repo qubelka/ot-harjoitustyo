@@ -6,4 +6,7 @@
 | 27.3. | 2 | tutustuminen Mockitoon ja rubenlagusin laatimaan TG- wikiin |
 | 28.3. | 3 | koodin kirjoittamista, projektiin liittyvien asioiden selvittelyä pajassa & tutustuminen Checkstyleen |
 | 29.3. | 1 | mvn compile exec -komentojen testaus & dokumentaation päivittäminen |
-| yht | 11  |  |
+| 1.4. | 2 | paja, shaded jar:n luominen |
+| 2.4. | 1 | dokumentaation päivittäminen, tutustuminen Mockito spy -testaukseen |
+| 4.4. | 2 | Bot-luokan käsitteistä Keyboard ja ReplyMessage luotu omat luokat; Mockito-spy testit Bot-luokalle |  
+| yht | 16  |  |
