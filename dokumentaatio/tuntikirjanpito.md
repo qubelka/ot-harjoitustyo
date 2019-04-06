@@ -9,4 +9,6 @@
 | 1.4. | 2 | paja, shaded jar:n luominen |
 | 2.4. | 1 | dokumentaation päivittäminen, tutustuminen Mockito spy -testaukseen |
 | 4.4. | 2 | Bot-luokan käsitteistä Keyboard ja ReplyMessage luotu omat luokat; Mockito-spy testit Bot-luokalle |  
-| yht | 16  |  |
+| 5.4. | 2 | lisätty luokat Weather, User sekä Daot; testit ReplyMessage-luokalle |
+| 6.4. | 1 | pakkausrakennetta muutettu; tutustuminen Springiin, maven shade pluginin tilalle vaihdettu Spring |   
+| yht | 19  |  |

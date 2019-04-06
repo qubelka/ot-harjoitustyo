@@ -1,0 +1,8 @@
+dao/WeatherDao.class
+domain/ReplyMessage.class
+domain/User.class
+domain/Weather.class
+domain/KeyboardBuilder.class
+tgbots/weatherbot/Main.class
+dao/UserDao.class
+domain/Bot.class
