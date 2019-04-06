@@ -9,13 +9,15 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
 
+[Arkkitehtuurikuvaus]
+
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 
 ## **Komentorivitoiminnot**
 
 ### **Ohjelman suoritus**
 
-`mvn compile exec:java -Dexec.mainClass=tgbots.weatherbot.Main` 
+`mvn compile exec:java -Dexec.mainClass=domain.BotApp` 
 
 ### **Suoritettavan jarin generointi**
 
@@ -23,5 +25,27 @@ Komento
 
 `mvn package`
 
-generoi hakemistoon *target* kaksi jar-tiedostoa, joista suoritetaan se, jonka nimessä **ei** ole sanaa *original*. 
-Eli tiedosto nimeltä WeatherBot-1.0-SNAPSHOT.jar 
+generoi hakemistoon *target* kolme jar-tiedostoa, joista suoritetaan se, jonka nimessä mainitaan **spring**. 
+Eli tiedosto nimeltä WeatherBot-1.0-SNAPSHOT-spring-boot.jar
+
+### **Testaus**
+
+Testit suoritetaan komennolla
+
+`mvn test`
+
+Testikattavuusraportti luodaan komennolla
+
+`mvn jacoco:report`
+
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto *target/site/jacoco/index.html*
+ 
+### **Checkstyle**
+
+Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
+
+`mvn jxr:jxr checkstyle:checkstyle`
+
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/site/checkstyle.html
+
+

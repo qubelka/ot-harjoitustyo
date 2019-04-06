@@ -3,6 +3,8 @@ domain/ReplyMessage.class
 domain/User.class
 domain/Weather.class
 domain/KeyboardBuilder.class
-tgbots/weatherbot/Main.class
+dao/Dao.class
+ui/BotUi.class
 dao/UserDao.class
 domain/Bot.class
+domain/BotApp.class
