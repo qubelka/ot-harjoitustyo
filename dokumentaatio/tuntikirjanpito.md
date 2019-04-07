@@ -11,4 +11,5 @@
 | 4.4. | 2 | Bot-luokan käsitteistä Keyboard ja ReplyMessage luotu omat luokat; Mockito-spy testit Bot-luokalle |  
 | 5.4. | 2 | lisätty luokat Weather, User sekä Daot; testit ReplyMessage-luokalle |
 | 6.4. | 2 | pakkausrakennetta muutettu; tutustuminen Springiin, maven shade pluginin tilalle vaihdettu Spring |   
-| yht | 20  |  |
+| 7.4. | 1 | arkkitehtuuri.md & pakkauskaavio |
+| yht | 21  |  |
