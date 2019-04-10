@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: ServiceTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.107 s <<< FAILURE! - in ServiceTest
-test(ServiceTest)  Time elapsed: 0.011 s  <<< ERROR!
-java.lang.NullPointerException
-	at ServiceTest.test(ServiceTest.java:15)
-

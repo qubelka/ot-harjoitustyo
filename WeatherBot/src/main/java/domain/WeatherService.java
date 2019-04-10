@@ -1,29 +1,61 @@
 package domain;
 
+import dao.UserDao;
+import dao.WeatherDao;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import org.springframework.stereotype.Component;
 import java.util.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class WeatherService {
 
-    private final String errorMessage = "No weather information found for your request, please check the spelling.\nFor help: /help";
-    private Weather weather = new Weather();
+    @Autowired
+    WeatherDao weatherDao;
 
-    public String getWeather(String request) throws IOException, JSONException {
-        if (!checkFormat(request)) {
+    @Autowired
+    UserDao userDao;
+
+    private final String errorMessage = "No weather information found for your request, please check the spelling.\nFor help: /help";
+    private Weather weather;
+    private HashSet<Long> users;
+    private HashMap<String, Integer> cities;
+
+    public WeatherService() {
+        this.weather = new Weather();
+        this.users = new HashSet<>();
+        this.cities = new HashMap<>();
+    }
+
+    public String getWeather(String city, long userID) throws IOException, JSONException, SQLException {
+        if (!checkFormat(city)) {
             return errorMessage;
         }
 
-        String weatherInfo = readUrl(request);
+        if (this.cities.containsKey(city)) {
+            if (this.users.contains(userID)) {
+                if (userDao.read((int) userID).getUnits() == 1) {
+                    return weatherDao.read(cities.get(city)).toString();
+                } else {
+                    return weatherDao.read(cities.get(city)).toStringFarenheit();
+                }
+            }
+            return weatherDao.read(cities.get(city)).toString();
+        }
+
+        String weatherInfo = readUrl(city);
         parseInfo(weatherInfo);
 
+        createId(city);
+        weatherDao.create(weather);
+
+        // TRIGGER 
         return weather.toString();
     }
 
@@ -64,4 +96,12 @@ public class WeatherService {
     "name":"London",
     "cod":200}
      */
+    private void createId(String city) {
+        cities.put(city, cities.size() + 1);
+        weather.setId(cities.get(city));
+    }
+    
+    public void setUnits(User user, int units) {
+        
+    }
 }

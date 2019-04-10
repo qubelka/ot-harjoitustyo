@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BotUi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WeatherBot</a> &gt; <a href="index.source.html" class="el_package">ui</a> &gt; <span class="el_source">BotUi.java</span></div><h1>BotUi.java</h1><pre class="source lang-java linenums">package ui;
+
+import domain.Bot;
+import domain.KeyboardBuilder;
+import domain.ReplyMessage;
+import domain.WeatherService;
+import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.ApiContextInitializer;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+@Component
+<span class="nc" id="L13">public class BotUi {</span>
+
+    public void start() {
+<span class="nc" id="L16">        ApiContextInitializer.init();</span>
+<span class="nc" id="L17">        TelegramBotsApi botsApi = new TelegramBotsApi();</span>
+<span class="nc" id="L18">        KeyboardBuilder keyboard = new KeyboardBuilder();</span>
+<span class="nc" id="L19">        ReplyMessage reply = new ReplyMessage(keyboard);</span>
+<span class="nc" id="L20">        WeatherService weatherService  = new WeatherService();</span>
+
+        try {
+<span class="nc" id="L23">            botsApi.registerBot(new Bot(reply, weatherService));</span>
+<span class="nc" id="L24">            System.out.println(&quot;Connection established successfully&quot;);</span>
+<span class="nc" id="L25">            System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L26">            System.out.println(&quot;To try this app:\n&quot;</span>
+                    + &quot;1) leave this project running on NetBeans\n&quot;
+                    + &quot;2) open telegram\n&quot;
+                    + &quot;2) search for @HarjoitustyoWeatherbot\n&quot;
+                    + &quot;4) type some text or press any button\n&quot;);
+<span class="nc" id="L31">            System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L32">            System.out.println(&quot;To stop app just press stop (red square button in Netbeans)\n&quot;</span>
+                    + &quot;or CTRL+Z in bash&quot;);
+<span class="nc" id="L34">        } catch (TelegramApiException e) {</span>
+<span class="nc" id="L35">            e.printStackTrace();</span>
+<span class="nc" id="L36">        }</span>
+<span class="nc" id="L37">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

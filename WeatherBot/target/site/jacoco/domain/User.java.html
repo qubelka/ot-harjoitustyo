@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WeatherBot</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package domain;
+
+public class User {
+    private long id;
+    private int units;
+
+<span class="fc" id="L7">    public User(long id) {</span>
+<span class="fc" id="L8">        this.id = id;</span>
+<span class="fc" id="L9">    }</span>
+    
+    public long getId() {
+<span class="fc" id="L12">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="fc" id="L16">        this.id = id;</span>
+<span class="fc" id="L17">    }</span>
+
+    public int getUnits() {
+<span class="fc" id="L20">        return units;</span>
+    }
+
+    public void setUnits(int units) {
+<span class="nc" id="L24">        this.units = units;</span>
+<span class="nc" id="L25">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L29">        int hash = 3;</span>
+<span class="nc" id="L30">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L36">            return true;</span>
+        }
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L39">            return false;</span>
+        }
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L42">            return false;</span>
+        }
+<span class="fc" id="L44">        final User other = (User) obj;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (this.id != other.id) {</span>
+<span class="fc" id="L46">            return false;</span>
+        }
+<span class="fc" id="L48">        return true;</span>
+    }
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -13,5 +13,5 @@
 | 6.4. | 2 | pakkausrakennetta muutettu; tutustuminen Springiin, maven shade pluginin tilalle vaihdettu Spring |   
 | 7.4. | 1 | arkkitehtuuri.md & pakkauskaavio |
 | 9.4. | 1 | lisätty User-testit |
-| 10.4. | 2 | lisätty WeatherService-luokka & toiminnallisuus, joka palauttaa säätietoja openweathermap-apin kautta |  
+| 10.4. | 4 | lisätty WeatherService-luokka & toiminnallisuus, joka palauttaa säätietoja openweathermap-apin kautta + osa daojen toiminnallisuuksista |  
 | yht | 24  |  |

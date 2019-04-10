@@ -1,9 +1,11 @@
+dao/WeatherDao.class
 domain/ReplyMessage.class
 domain/User.class
+domain/Weather.class
 domain/KeyboardBuilder.class
 dao/Dao.class
-domain/BotApp.class
-dao/WeatherDao.class
-domain/Weather.class
+domain/WeatherService.class
 ui/BotUi.class
 dao/UserDao.class
+domain/Bot.class
+domain/BotApp.class

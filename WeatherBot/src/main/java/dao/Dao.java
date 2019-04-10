@@ -5,7 +5,7 @@ import java.sql.*;
 
 public interface Dao<T, K> {
 
-    T create(T object) throws SQLException;
+    void create(T object) throws SQLException;
 
     T read(K key) throws SQLException;
 

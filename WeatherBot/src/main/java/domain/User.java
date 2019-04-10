@@ -4,8 +4,17 @@ public class User {
     private long id;
     private int units;
 
+    public User() {
+        
+    }
+    
     public User(long id) {
+        this(id, 0);
+    }
+    
+    public User(long id, int units) {
         this.id = id;
+        this.units = units;
     }
     
     public long getId() {

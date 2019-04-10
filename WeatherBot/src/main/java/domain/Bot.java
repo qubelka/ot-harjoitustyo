@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
@@ -40,6 +41,7 @@ public class Bot extends TelegramLongPollingBot {
         // We check if the update has a message and the message has text
         if (update.hasMessage() && update.getMessage().hasText()) {
             Message received = update.getMessage();
+            Long userID = received.getChatId();
             SendMessage reply = replyMessage.sendDefaultReply(received, "No weather information found for your request, please check the spelling.\nFor help: /help");
             String generalizedRequest = received.getText().replaceAll("/", "").replaceAll("_", " ");
             switch (generalizedRequest) {
@@ -57,13 +59,16 @@ public class Bot extends TelegramLongPollingBot {
                     break;
                 default:
                     try {
-                        reply = replyMessage.sendDefaultReply(received, weatherService.getWeather(generalizedRequest));
+                        reply = replyMessage.sendDefaultReply(received, weatherService.getWeather(generalizedRequest, userID));
                     } catch (JSONException ex) {
                         Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
                         System.out.println("JSONException");
                     } catch (IOException ex) {
                         Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
                         System.out.println("IOException");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("SQLException");
                     }
 
                     break;

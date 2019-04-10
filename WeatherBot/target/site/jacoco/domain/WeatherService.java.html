@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WeatherService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WeatherBot</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">WeatherService.java</span></div><h1>WeatherService.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import org.springframework.stereotype.Component;
+import java.util.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+@Component
+<span class="fc" id="L14">public class WeatherService {</span>
+
+<span class="fc" id="L16">    private final String errorMessage = &quot;No weather information found for your request, please check the spelling.\nFor help: /help&quot;;</span>
+<span class="fc" id="L17">    private Weather weather = new Weather();</span>
+
+    public String getWeather(String request) throws IOException, JSONException {
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">        if (!checkFormat(request)) {</span>
+<span class="fc" id="L21">            return errorMessage;</span>
+        }
+
+<span class="nc" id="L24">        String weatherInfo = readUrl(request);</span>
+<span class="nc" id="L25">        parseInfo(weatherInfo);</span>
+
+<span class="nc" id="L27">        return weather.toString();</span>
+    }
+
+    public boolean checkFormat(String url) {
+<span class="fc" id="L31">        String pattern = &quot;[A-Z-ÖÄÅa-z-öäå]*&quot;;</span>
+<span class="fc" id="L32">        return url.matches(pattern);</span>
+    }
+
+    private String readUrl(String request) throws IOException {
+<span class="fc" id="L36">        URL url = new URL(&quot;http://api.openweathermap.org/data/2.5/weather?q=&quot; + request + &quot;&amp;units=metric&amp;appid=93487a5ce457fe83a42a60b6aa0d7c93&quot;);</span>
+<span class="nc" id="L37">        Scanner reader = new Scanner((InputStream) url.getContent());</span>
+<span class="nc" id="L38">        return reader.nextLine();</span>
+
+    }
+
+    private void parseInfo(String weatherInfo) throws JSONException {
+<span class="nc" id="L43">        JSONObject object = new JSONObject(weatherInfo);</span>
+<span class="nc" id="L44">        weather.setCity(object.getString(&quot;name&quot;));</span>
+
+<span class="nc" id="L46">        JSONObject main = object.getJSONObject(&quot;main&quot;);</span>
+<span class="nc" id="L47">        weather.setTemperature(main.getString(&quot;temp&quot;));</span>
+<span class="nc" id="L48">        weather.setHumidity(main.getString(&quot;humidity&quot;));</span>
+
+<span class="nc" id="L50">        JSONArray mainDescription = object.getJSONArray(&quot;weather&quot;);</span>
+<span class="nc" id="L51">        JSONObject mainObject = mainDescription.getJSONObject(0);</span>
+<span class="nc" id="L52">        weather.setMain(mainObject.getString(&quot;main&quot;));</span>
+<span class="nc" id="L53">        weather.setIcon(mainObject.getString(&quot;icon&quot;));</span>
+<span class="nc" id="L54">    }</span>
+
+    /*
+    {&quot;coord&quot;:{&quot;lon&quot;:-0.13,&quot;lat&quot;:51.51},
+    &quot;weather&quot;:[{&quot;id&quot;:804,&quot;main&quot;:&quot;Clouds&quot;,&quot;description&quot;:&quot;overcast clouds&quot;,&quot;icon&quot;:&quot;04d&quot;}],
+    &quot;base&quot;:&quot;stations&quot;,&quot;main&quot;:{&quot;temp&quot;:282.58,&quot;pressure&quot;:1005,&quot;humidity&quot;:76,&quot;temp_min&quot;:281.48,&quot;temp_max&quot;:284.26},
+    &quot;visibility&quot;:10000,&quot;wind&quot;:{&quot;speed&quot;:5.1,&quot;deg&quot;:50},
+    &quot;clouds&quot;:{&quot;all&quot;:90},&quot;dt&quot;:1554561216,
+    &quot;sys&quot;:{&quot;type&quot;:1,&quot;id&quot;:1414,&quot;message&quot;:0.0074,&quot;country&quot;:&quot;GB&quot;,&quot;sunrise&quot;:1554528315,&quot;sunset&quot;:1554576026},
+    &quot;id&quot;:2643743,
+    &quot;name&quot;:&quot;London&quot;,
+    &quot;cod&quot;:200}
+     */
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
