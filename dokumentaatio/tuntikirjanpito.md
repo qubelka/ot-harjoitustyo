@@ -12,4 +12,6 @@
 | 5.4. | 2 | lisätty luokat Weather, User sekä Daot; testit ReplyMessage-luokalle |
 | 6.4. | 2 | pakkausrakennetta muutettu; tutustuminen Springiin, maven shade pluginin tilalle vaihdettu Spring |   
 | 7.4. | 1 | arkkitehtuuri.md & pakkauskaavio |
-| yht | 21  |  |
+| 9.4. | 1 | lisätty User-testit |
+| 10.4. | 2 | lisätty WeatherService-luokka & toiminnallisuus, joka palauttaa säätietoja openweathermap-apin kautta |  
+| yht | 24  |  |

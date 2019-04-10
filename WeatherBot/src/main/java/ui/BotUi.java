@@ -3,6 +3,7 @@ package ui;
 import domain.Bot;
 import domain.KeyboardBuilder;
 import domain.ReplyMessage;
+import domain.WeatherService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -16,9 +17,10 @@ public class BotUi {
         TelegramBotsApi botsApi = new TelegramBotsApi();
         KeyboardBuilder keyboard = new KeyboardBuilder();
         ReplyMessage reply = new ReplyMessage(keyboard);
+        WeatherService weatherService  = new WeatherService();
 
         try {
-            botsApi.registerBot(new Bot(reply));
+            botsApi.registerBot(new Bot(reply, weatherService));
             System.out.println("Connection established successfully");
             System.out.println("");
             System.out.println("To try this app:\n"

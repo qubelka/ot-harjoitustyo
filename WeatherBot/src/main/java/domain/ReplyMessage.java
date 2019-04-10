@@ -1,16 +1,20 @@
 package domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
+@Component
 public class ReplyMessage {
 
-    KeyboardBuilder keyboardBuilder;
+    private KeyboardBuilder keyboardBuilder;
 
+    @Autowired
     public ReplyMessage(KeyboardBuilder kb) {
-        keyboardBuilder = kb;
+        this.keyboardBuilder = kb;
     }
 
     public SendMessage sendDefaultReply(Message received, String reply) {

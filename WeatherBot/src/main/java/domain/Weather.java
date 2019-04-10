@@ -27,4 +27,34 @@ public class Weather {
         this.city = city;
     }
 
+    public String getMain() {
+        return main;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public String getCity() {
+        return city;
+    }
+    
+    @Override
+    public String toString() {
+        return "City: " + this.getCity() + "\n"
+                + "Temperature: " + this.getTemperature() + "°C\n"
+                + "Humidity: " + this.humidity + "%\n"
+                + "Main: " + this.main + "\n"
+                + "http://openweathermap.org/img/w/" + this.getIcon() + ".png";
+                
+    }
+
 }

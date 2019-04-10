@@ -1,3 +1,5 @@
+package domain;
+
 
 import domain.User;
 import org.junit.Test;

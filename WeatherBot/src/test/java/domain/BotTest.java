@@ -1,9 +1,9 @@
+package domain;
+
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Rule;
-import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.isA;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -11,20 +11,19 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import org.mockito.junit.MockitoJUnit;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import domain.Bot;
 import domain.KeyboardBuilder;
 import domain.ReplyMessage;
+import domain.WeatherService;
 
 public class BotTest {
 
     private Bot bot;
     private KeyboardBuilder keyboard;
     private ReplyMessage reply;
+    private WeatherService weatherService;
 
     @Mock
     Update update;
@@ -33,8 +32,9 @@ public class BotTest {
     @Before
     public void setup() {
         keyboard = new KeyboardBuilder();
+        weatherService = new WeatherService();
         reply = new ReplyMessage(keyboard);
-        bot = spy(new Bot(reply));
+        bot = spy(new Bot(reply, weatherService));
     }
 
     @Test

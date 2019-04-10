@@ -1,3 +1,5 @@
+package domain;
+
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -36,7 +38,7 @@ public class ReplyMessageTest {
                 .setChatId(12345678l)
                 .setText(reply);
 
-        assertEquals(replyMessage.sendDefaultReply(message, reply), replyToReceived);
+        assertEquals(replyToReceived, replyMessage.sendDefaultReply(message, reply));
     }
 
     @Test
@@ -48,7 +50,7 @@ public class ReplyMessageTest {
                 .setChatId(12345678l)
                 .setText(reply);
 
-        assertEquals(replyMessage.sendUnitsReply(message, reply), replyToReceived);
+        assertEquals(replyToReceived, replyMessage.sendUnitsReply(message, reply));
     }
 
 }

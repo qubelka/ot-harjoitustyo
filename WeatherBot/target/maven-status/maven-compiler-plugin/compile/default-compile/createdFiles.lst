@@ -1,0 +1,9 @@
+domain/ReplyMessage.class
+domain/User.class
+domain/KeyboardBuilder.class
+dao/Dao.class
+domain/BotApp.class
+dao/WeatherDao.class
+domain/Weather.class
+ui/BotUi.class
+dao/UserDao.class
