@@ -15,22 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class WeatherService {
-
-    @Autowired
-    WeatherDao weatherDao;
-
-    @Autowired
-    UserDao userDao;
-
+    private WeatherDao weatherDao;
+    private UserDao userDao;
     private final String errorMessage = "No weather information found for your request, please check the spelling.\nFor help: /help";
     private Weather weather;
-    private HashSet<Long> users;
-    private HashMap<String, Integer> cities;
-
-    public WeatherService() {
+    
+    @Autowired
+    public WeatherService(WeatherDao wd, UserDao ud) {  
+        this.weatherDao = wd;
+        this.userDao = ud;
         this.weather = new Weather();
-        this.users = new HashSet<>();
-        this.cities = new HashMap<>();
     }
 
     public String getWeather(String city, long userID) throws IOException, JSONException, SQLException {
@@ -38,22 +32,23 @@ public class WeatherService {
             return errorMessage;
         }
 
-        if (this.cities.containsKey(city)) {
-            if (this.users.contains(userID)) {
-                if (userDao.read((int) userID).getUnits() == 1) {
-                    return weatherDao.read(cities.get(city)).toString();
+
+        if (weatherDao.contains(city)) {
+            if (userDao.contains(userID)) {
+               if (userDao.read(userID).getUnits() == 1) {
+                    return weatherDao.read(weatherDao.cities.get(city)).toString();
                 } else {
-                    return weatherDao.read(cities.get(city)).toStringFarenheit();
+                    return weatherDao.read(weatherDao.cities.get(city)).toStringFarenheit();
                 }
             }
-            return weatherDao.read(cities.get(city)).toString();
+            return weatherDao.read(weatherDao.cities.get(city)).toString();
         }
 
         String weatherInfo = readUrl(city);
         parseInfo(weatherInfo);
 
-        createId(city);
-        weatherDao.create(weather);
+//        createId(city);
+//        weatherDao.create(weather);
 
         // TRIGGER 
         return weather.toString();
@@ -97,11 +92,15 @@ public class WeatherService {
     "cod":200}
      */
     private void createId(String city) {
-        cities.put(city, cities.size() + 1);
-        weather.setId(cities.get(city));
+        weatherDao.cities.put(city, weatherDao.cities.size() + 1);
+        weather.setId(weatherDao.cities.get(city));
     }
     
-    public void setUnits(User user, int units) {
-        
+    public void setUnits(Long userID, int units) {
+        if (userDao.contains(userID)) {
+            userDao.update(userDao.users.get(userID));
+        } else {
+            userDao.create(new User(userID, units));
+        }
     }
 }

@@ -51,14 +51,12 @@ public class UserTest {
     @Test
     public void canIdentifySameUserByID() {
         User user2 = new User(99999999l);
-
         assertThat(user, is(user2));
     }
     
     @Test
     public void canIdentifyDifferentUsersByID() {
-        User user2 = new User(88888888l);
-        
+        User user2 = new User(88888888l);       
         assertThat(user, is(not(user2)));
     }
     

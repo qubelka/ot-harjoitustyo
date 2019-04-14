@@ -72,7 +72,7 @@ public class Weather {
 
     public String toStringFarenheit() {
         return "City: " + this.getCity() + "\n"
-                + "Temperature: " + this.getTemperature() + "°F\n"
+                + "Temperature: " + (Integer.valueOf(this.getTemperature())*1.8+32) + "°F\n"
                 + "Humidity: " + this.humidity + "%\n"
                 + "Main: " + this.main + "\n"
                 + "http://openweathermap.org/img/w/" + this.getIcon() + ".png";

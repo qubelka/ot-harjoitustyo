@@ -1,5 +1,7 @@
 package domain;
 
+import dao.UserDao;
+import dao.WeatherDao;
 import domain.WeatherService;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,10 +17,14 @@ import static org.hamcrest.CoreMatchers.*;
 public class WeatherServiceTest {
 
     WeatherService weatherService;
+    WeatherDao weatherDao;
+    UserDao userDao;
 
     @Before
-    public void setUp() {
-        weatherService = new WeatherService();
+    public void setUp() throws IOException {
+        weatherDao = new WeatherDao();
+        userDao = new UserDao();
+        weatherService = new WeatherService(weatherDao, userDao);
     }
 
     @Test

@@ -3,6 +3,7 @@ package dao;
 import domain.User;
 import domain.Weather;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -11,6 +12,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class WeatherDao implements Dao<Weather, Integer> {
+    public static HashMap<String, Integer> cities;
+    
+    public WeatherDao() {
+        cities = new HashMap<>();
+    }
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -59,6 +65,10 @@ public class WeatherDao implements Dao<Weather, Integer> {
     @Override
     public List<Weather> list() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public boolean contains(String key) {
+        return cities.containsKey(key);
     }
 
 }

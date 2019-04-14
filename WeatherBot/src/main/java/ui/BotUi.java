@@ -1,9 +1,13 @@
 package ui;
 
+import configuration.BotConfiguration;
+import dao.UserDao;
+import dao.WeatherDao;
 import domain.Bot;
 import domain.KeyboardBuilder;
 import domain.ReplyMessage;
 import domain.WeatherService;
+import java.io.IOException;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -12,12 +16,17 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class BotUi {
 
-    public void start() {
+    public void start() throws IOException {
+        BotConfiguration.load();
+        
         ApiContextInitializer.init();
         TelegramBotsApi botsApi = new TelegramBotsApi();
         KeyboardBuilder keyboard = new KeyboardBuilder();
         ReplyMessage reply = new ReplyMessage(keyboard);
-        WeatherService weatherService  = new WeatherService();
+        
+        WeatherDao weatherDao = new WeatherDao();
+        UserDao userDao = new UserDao();
+        WeatherService weatherService  = new WeatherService(weatherDao, userDao);
 
         try {
             botsApi.registerBot(new Bot(reply, weatherService));

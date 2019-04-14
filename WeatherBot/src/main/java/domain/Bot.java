@@ -1,5 +1,6 @@
 package domain;
 
+import configuration.BotConfiguration;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -27,15 +29,15 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "HarjoitustyoWeatherbot";
+        return BotConfiguration.botName;
     }
 
     @Override
     public String getBotToken() {
-        return "789067379:AAH7xM9S9Th-cKqdYbFowXIEBzb8vF3z3wo";
+        return BotConfiguration.botToken;
     }
 
-    // checkstyle error : MethodLength	--> Method length is 23 lines (max allowed is 20)
+    // checkstyle error : MethodLength	--> Method length exceeds max allowed (20)
     @Override
     public void onUpdateReceived(Update update) {
         // We check if the update has a message and the message has text
@@ -74,9 +76,31 @@ public class Bot extends TelegramLongPollingBot {
                     break;
             }
             try {
-                execute(reply); 
+                // id used for testing 12345678; condition created for testing
+                if (reply.getChatId().equals("12345678")) {
+                    return;
+                }
+                execute(reply);
             } catch (TelegramApiException e) {
                 e.printStackTrace();
+            }
+        } else if (update.hasCallbackQuery()) {
+            Message unitSettings = update.getCallbackQuery().getMessage();
+            String callData = update.getCallbackQuery().getData();
+            SendMessage reply = replyMessage.sendDefaultReply(unitSettings, "oops, something went wrong");
+            if (callData.equals("update_celcius")) {
+                reply = replyMessage.sendDefaultReply(unitSettings, "Current weather units: °C");
+                weatherService.setUnits(unitSettings.getChatId(), 1);
+            } else if (callData.contains("update_farenheit")) {
+                reply = replyMessage.sendDefaultReply(unitSettings, "Current weather units: °F");
+                weatherService.setUnits(unitSettings.getChatId(), 2);
+            }
+
+            try {
+                execute(reply);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+                System.out.println("Exception in executing callbackquery");
             }
         }
     }

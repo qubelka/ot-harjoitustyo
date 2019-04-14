@@ -1,6 +1,7 @@
 package domain;
 
-
+import dao.UserDao;
+import dao.WeatherDao;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -17,22 +18,31 @@ import domain.Bot;
 import domain.KeyboardBuilder;
 import domain.ReplyMessage;
 import domain.WeatherService;
+import java.io.IOException;
+import java.sql.SQLException;
+import org.json.JSONException;
+import static org.hamcrest.CoreMatchers.*;
 
 public class BotTest {
 
     private Bot bot;
     private KeyboardBuilder keyboard;
     private ReplyMessage reply;
-    private WeatherService weatherService;
+    private WeatherDao weatherDao;
+    private UserDao userDao;
 
     @Mock
     Update update;
     Message message;
+    WeatherService weatherService;
 
     @Before
-    public void setup() {
+    public void setup() throws IOException {
         keyboard = new KeyboardBuilder();
-        weatherService = new WeatherService();
+        weatherDao = new WeatherDao();
+        userDao = new UserDao();
+        weatherService = new WeatherService(weatherDao, userDao);
+        weatherService = Mockito.mock(WeatherService.class);
         reply = new ReplyMessage(keyboard);
         bot = spy(new Bot(reply, weatherService));
     }
@@ -91,34 +101,15 @@ public class BotTest {
         bot.onUpdateReceived(update);
         verify(bot, times(1)).onUpdateReceived(update);
     }
-    
+
     @Test
-    public void botCanReceiveDefaultRequests() {
+    public void botCanReceiveDefaultRequests() throws IOException, JSONException, SQLException {
         createFakeUpdateConditions();
-        Mockito.when(message.getText()).thenReturn("else");
+        createFakeUpdateConditionsForWeatherSearch();
+        Mockito.when(message.getText()).thenReturn("Helsinki");
         bot.onUpdateReceived(update);
         verify(bot, times(1)).onUpdateReceived(update);
     }
-    
-//    @Test
-//    public void botRespondsToRequest() throws TelegramApiException {
-//        createFakeUpdateConditions();
-//        Mockito.when(message.getText()).thenReturn("help");
-//        String jsonMessage = "{chatId='12345678', text='can't help you, this method not supported yet', parseMode='null', "
-//                + "disableNotification='null', disableWebPagePreview=null, replyToMessageId=null, "
-//                + "replyMarkup=ReplyKeyboardMarkup{keyboard=[[KeyboardButton{text=help, requestContact=null, requestLocation=null}, "
-//                + "KeyboardButton{text=units, requestContact=null, requestLocation=null}], [KeyboardButton{text=my locations, requestContact=null, "
-//                + "requestLocation=null}, KeyboardButton{text=search by city name, requestContact=null, requestLocation=null}]], "
-//                + "resizeKeyboard=true, oneTimeKeyboard=false, selective=true}}";
-//        SendMessage reply = Mockito.mock(SendMessage.class);
-//
-////        reply.setChatId(message.getChatId());
-//
-//        doNothing().doThrow(new TelegramApiException e).when(bot).execute(isA(SendMessage.class));
-//        bot.onUpdateReceived(update);
-//        verify(bot, times(1)).onUpdateReceived(update);
-//        verify(bot, times(1)).execute(reply);
-//    }
 
     public void createFakeUpdateConditions() {
         update = Mockito.mock(Update.class);
@@ -129,6 +120,10 @@ public class BotTest {
         Mockito.when(update.getMessage().hasText()).thenReturn(true);
         Mockito.when(message.getChatId()).thenReturn(12345678l);
         Mockito.when(message.getMessageId()).thenReturn(1234);
+    }
+
+    public void createFakeUpdateConditionsForWeatherSearch() throws IOException, JSONException, SQLException {
+        Mockito.when(weatherService.getWeather(message.getText(), message.getChatId())).thenReturn("weatherInfo");
     }
 
 }
