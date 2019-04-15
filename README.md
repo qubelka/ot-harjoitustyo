@@ -13,6 +13,10 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 
+## **Releaset**
+
+[Viikko 5]
+
 ## **Komentorivitoiminnot**
 
 ### **Ohjelman suoritus**
@@ -27,6 +31,7 @@ Komento
 
 generoi hakemistoon *target* kolme jar-tiedostoa, joista suoritetaan se, jonka nimessä mainitaan **spring**. 
 Eli tiedosto nimeltä WeatherBot-1.0-SNAPSHOT-spring-boot.jar
+Sovellus olettaa, että suoritushakemistossa on tiedosto users.txt
 
 ### **Testaus**
 

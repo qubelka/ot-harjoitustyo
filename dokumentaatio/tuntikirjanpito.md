@@ -15,5 +15,6 @@
 | 9.4. | 1 | lisätty User-testit |
 | 10.4. | 4 | lisätty WeatherService-luokka & toiminnallisuus, joka palauttaa säätietoja openweathermap-apin kautta + osa daojen toiminnallisuuksista |  
 | 11.4. | 2 | botin testaukseen liittyvien asioiden selvittelyä pajassa |
-| 14.4. | 4 | lisätty luokka BotConfiguration; UserDao muokattu (db -> tekstitiedosto); botti osaa reagoida lämpötila-asteiden valintaan | 
-| yht | 32 |  |
+| 14.4. | 5 | lisätty luokka BotConfiguration; UserDao muokattu (db -> tekstitiedosto); botti osaa reagoida lämpötila-asteiden valintaan; release1 valmiiksi | 
+| 15.4. | 2 | lisätty FakeUserDao + UserDaoTest, BotConfigurationTest, WeatherTest | 
+| yht | 35 |  |
