@@ -40,7 +40,7 @@ public class BotTest {
     public void setup() throws IOException {
         keyboard = new KeyboardBuilder();
         weatherDao = new WeatherDao();
-        userDao = new UserDao();
+        userDao = new UserDao("users.txt");
         weatherService = new WeatherService(weatherDao, userDao);
         weatherService = Mockito.mock(WeatherService.class);
         reply = new ReplyMessage(keyboard);

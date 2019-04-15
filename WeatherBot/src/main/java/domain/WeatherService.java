@@ -15,13 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class WeatherService {
+
     private WeatherDao weatherDao;
     private UserDao userDao;
     private final String errorMessage = "No weather information found for your request, please check the spelling.\nFor help: /help";
     private Weather weather;
-    
+
     @Autowired
-    public WeatherService(WeatherDao wd, UserDao ud) {  
+    public WeatherService(WeatherDao wd, UserDao ud) {
         this.weatherDao = wd;
         this.userDao = ud;
         this.weather = new Weather();
@@ -32,23 +33,18 @@ public class WeatherService {
             return errorMessage;
         }
 
-
-        if (weatherDao.contains(city)) {
-            if (userDao.contains(userID)) {
-               if (userDao.read(userID).getUnits() == 1) {
-                    return weatherDao.read(weatherDao.cities.get(city)).toString();
-                } else {
-                    return weatherDao.read(weatherDao.cities.get(city)).toStringFarenheit();
-                }
-            }
-            return weatherDao.read(weatherDao.cities.get(city)).toString();
-        }
-
         String weatherInfo = readUrl(city);
         parseInfo(weatherInfo);
 
-//        createId(city);
-//        weatherDao.create(weather);
+        if (userDao.contains(userID)) {
+            System.out.println("User founded from HashMap");
+            if (userDao.read(userID).getUnits() == 1) {
+                System.out.println("Users units equals 1");
+                return weather.toString();
+            } else {
+                return weather.toStringFarenheit();
+            }
+        }
 
         // TRIGGER 
         return weather.toString();
@@ -95,12 +91,31 @@ public class WeatherService {
         weatherDao.cities.put(city, weatherDao.cities.size() + 1);
         weather.setId(weatherDao.cities.get(city));
     }
-    
+
     public void setUnits(Long userID, int units) {
         if (userDao.contains(userID)) {
-            userDao.update(userDao.users.get(userID));
+            User updatedUser = userDao.read(userID);
+            updatedUser.setUnits(units);
+            userDao.update(updatedUser);
         } else {
             userDao.create(new User(userID, units));
         }
     }
+
+    // unsupported functions: 
+    /* -- > requires DB for weather storage < --
+        if (weatherDao.contains(city)) {
+            if (userDao.contains(userID)) {
+               if (userDao.read(userID).getUnits() == 1) {
+                    return weatherDao.read(weatherDao.cities.get(city)).toString();
+                } else {
+                    return weatherDao.read(weatherDao.cities.get(city)).toStringFarenheit();
+                }
+            }
+            return weatherDao.read(weatherDao.cities.get(city)).toString();
+        }
+     */
+    // -- > requires DB for weather storage < --       
+//        createId(city);
+//        weatherDao.create(weather);
 }

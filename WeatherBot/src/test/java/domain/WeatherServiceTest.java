@@ -23,7 +23,7 @@ public class WeatherServiceTest {
     @Before
     public void setUp() throws IOException {
         weatherDao = new WeatherDao();
-        userDao = new UserDao();
+        userDao = new UserDao("users.txt");
         weatherService = new WeatherService(weatherDao, userDao);
     }
 

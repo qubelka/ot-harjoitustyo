@@ -5,6 +5,7 @@ import domain.Weather;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class WeatherDao implements Dao<Weather, Integer> {
-    public static HashMap<String, Integer> cities;
+    public HashMap<String, Integer> cities;
     
     public WeatherDao() {
         cities = new HashMap<>();
@@ -63,7 +64,7 @@ public class WeatherDao implements Dao<Weather, Integer> {
     }
 
     @Override
-    public List<Weather> list() throws SQLException {
+    public Set<Weather> list() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

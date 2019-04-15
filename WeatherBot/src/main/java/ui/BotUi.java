@@ -25,7 +25,7 @@ public class BotUi {
         ReplyMessage reply = new ReplyMessage(keyboard);
         
         WeatherDao weatherDao = new WeatherDao();
-        UserDao userDao = new UserDao();
+        UserDao userDao = new UserDao("users.txt");
         WeatherService weatherService  = new WeatherService(weatherDao, userDao);
 
         try {

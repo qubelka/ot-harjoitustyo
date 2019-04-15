@@ -64,7 +64,7 @@ public class Weather {
     @Override
     public String toString() {
         return "City: " + this.getCity() + "\n"
-                + "Temperature: " + this.getTemperature() + "°C\n"
+                + "Temperature: " + this.temperature + "°C\n"
                 + "Humidity: " + this.humidity + "%\n"
                 + "Main: " + this.main + "\n"
                 + "http://openweathermap.org/img/w/" + this.getIcon() + ".png";
@@ -72,7 +72,7 @@ public class Weather {
 
     public String toStringFarenheit() {
         return "City: " + this.getCity() + "\n"
-                + "Temperature: " + (Integer.valueOf(this.getTemperature())*1.8+32) + "°F\n"
+                + "Temperature: " + (Double.valueOf(this.temperature) * 1.8 + 32) + "°F\n"
                 + "Humidity: " + this.humidity + "%\n"
                 + "Main: " + this.main + "\n"
                 + "http://openweathermap.org/img/w/" + this.getIcon() + ".png";

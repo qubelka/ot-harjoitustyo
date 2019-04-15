@@ -51,7 +51,7 @@ public class Bot extends TelegramLongPollingBot {
                     reply = replyMessage.sendDefaultReply(received, getHelpText());
                     break;
                 case "units":
-                    reply = replyMessage.sendUnitsReply(received, "can't change units, this method not supported yet");
+                    reply = replyMessage.sendUnitsReply(received, "Please choose units:");
                     break;
                 case "my locations":
                     reply = replyMessage.sendDefaultReply(received, "can't show locations, this method not supported yet");

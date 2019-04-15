@@ -5,12 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Properties;
 
 public class BotConfiguration {
-
-    private static final String BOT_CONFIG = "./config/bot/bot.properties";
-    private static final String DB_CONFIG = "./config/database/database.properties";
 
     public static String botName;
     public static String botToken;
@@ -19,37 +17,66 @@ public class BotConfiguration {
     public static String dbUser;
     public static String dbPassword;
 
-    
     public static void load() throws FileNotFoundException, IOException {
-        Properties botSettings = new Properties();
-        try (InputStream is = new FileInputStream(new File(BOT_CONFIG))) {
-            botSettings.load(is);
-            is.close();
-            System.out.println("...");
-            System.out.println("Bot configuration file has been loaded successfully");
-        } catch (Exception e) {
-            System.out.println("An error occured while loading bot configuration file");
-        }
+        Properties botSettings = loadBotSettings();
+        Properties databaseSettings = loadDatabaseSettings();
 
-        Properties databaseSettings = new Properties();
-
-        try (InputStream is = new FileInputStream(new File(DB_CONFIG))) {
-            databaseSettings.load(is);
-            is.close();
-            System.out.println("...");
-            System.out.println("Database configuration file has been loaded successfully");
-            System.out.println("");
-        } catch (Exception e) {
-            System.out.println("An error occured while loading database configuration file");
-        }
-
-       
         botName = botSettings.getProperty("botName", "HarjoitustyoWeatherbot");
         botToken = botSettings.getProperty("botToken", "789067379:AAH7xM9S9Th-cKqdYbFowXIEBzb8vF3z3wo");
-
         dbUrl = databaseSettings.getProperty("dbUrl", "jdbc:h2:./weather");
         dbUser = databaseSettings.getProperty("dbUser", "sa");
         dbPassword = databaseSettings.getProperty("dbPassword", "");
+    }
 
+    private static Properties loadBotSettings() {
+        Properties properties = new Properties();
+
+        try {
+            InputStream in = BotConfiguration.class.getClassLoader().getResourceAsStream("bot.properties");
+            properties.load(in);
+            System.out.println("...");
+            System.out.println("Bot configuration file has been loaded successfully");
+        } catch (IOException e) {
+            System.out.println("An error occured while loading bot configuration file");
+        }
+
+        return properties;
+    }
+
+    private static Properties loadDatabaseSettings() {
+        Properties properties = new Properties();
+
+        try {
+            InputStream in = BotConfiguration.class.getClassLoader().getResourceAsStream("database.properties");
+            properties.load(in);
+            in.close();
+            System.out.println("...");
+            System.out.println("Database configuration file has been loaded successfully");
+            System.out.println("");
+        } catch (IOException e) {
+            System.out.println("An error occured while loading database configuration file");
+        }
+
+        return properties;
+    }
+
+    public String getBotName() {
+        return botName;
+    }
+
+    public String getBotToken() {
+        return botToken;
+    }
+
+    public String getDbUrl() {
+        return dbUrl;
+    }
+
+    public String getDbUser() {
+        return dbUser;
+    }
+
+    public String getDbPassword() {
+        return dbPassword;
     }
 }

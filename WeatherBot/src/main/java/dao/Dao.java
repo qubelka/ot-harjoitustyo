@@ -13,5 +13,6 @@ public interface Dao<T, K> {
 
     void delete(K key) throws SQLException;
 
-    List<T> list() throws SQLException;
+    Set<T> list() throws SQLException;
+
 }
