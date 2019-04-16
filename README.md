@@ -15,7 +15,7 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 ## **Releaset**
 
-[Viikko 5]
+[Viikko 5](https://github.com/qubelka/ot-harjoitustyo/releases/tag/viikko5)
 
 ## **Komentorivitoiminnot**
 
