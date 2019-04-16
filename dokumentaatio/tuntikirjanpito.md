@@ -17,4 +17,5 @@
 | 11.4. | 2 | botin testaukseen liittyvien asioiden selvittelyä pajassa |
 | 14.4. | 5 | lisätty luokka BotConfiguration; UserDao muokattu (db -> tekstitiedosto); botti osaa reagoida lämpötila-asteiden valintaan; release1 valmiiksi | 
 | 15.4. | 2 | lisätty FakeUserDao + UserDaoTest, BotConfigurationTest, WeatherTest | 
-| yht | 35 |  |
+| 16.4. | 2 | lisäyksiä arkkitehtuuri.md:hen + sekvenssikaavio onUpdateReceived()-metodin toiminnasta |
+| yht | 37 |  |
