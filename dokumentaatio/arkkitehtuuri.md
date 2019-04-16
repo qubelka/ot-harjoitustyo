@@ -26,11 +26,11 @@ onUpdateReceived(Update update). Kyseinen metodi reagoi käyttäjän komentoihin
 Luokka muodostaa sovelluksen loogisen datamallin. Toiminnallisista kokonaisuuksista vastaa luokat *KeyboardBuilder*, *ReplyMessage* ja *WeatherService*. 
 Näiden luokkien tarjoamia keskeisiä metodeja botin toiminnan kannalta ovat:
  
-..* getMainMenuKeyboard()
-..* getUnitsKeyboard()
-..* sendDefaultReply(Message received, String reply)
-..* sendUnitsReply(Message received, String reply)  
-..* getWeather(String city, long userID)
+  * getMainMenuKeyboard()
+  * getUnitsKeyboard()
+  * sendDefaultReply(Message received, String reply)
+  * sendUnitsReply(Message received, String reply)  
+  * getWeather(String city, long userID)
 
 *WeatherService* hakee säätietoja openweathermap-apista, lisäksi luokka pääsee käsiksi käyttäjiin ja säätietoihin tietojen tallennuksesta vastaavassa pakkauksessa *dao* sijaitsevien rajapinnan *dao*
 toteuttavien luokkien *WeatherDao* ja *UserDao* kautta. Luokkien toteutukset injektoidaan sovelluslogiikalle konstruktorikutsun yhteydessä.   
@@ -64,7 +64,7 @@ Säätietoja voi hakea joko komennolla "search by city name" tai suoraan kirjoit
 syötteietä (lukuun ottamatta joukkoa sovellukseen määriteltyjä komentoja kuten /help) tulkitaan oletusarvoisesti säähakuina. Kun käyttäjä painaa nappia "search by city name" ja syöttää kaupungin tai
 antaa kaupungin nimen suoraan, etenee sovelluksen kontrolli seuraavasti: 
 
-![getWeather()]()
+![getWeather()](https://github.com/qubelka/ot-harjoitustyo/blob/master/laskarit/viikko5/getWeather().png?raw=true)
 
 Telegram api reagoi käyttäjän syöttämään komentoon kutsumalla Bot-luokan metodia onUpdateReceived(update). Seuraavaksi komento ohjautuu kohtaan "default", jossa ensin kutsutaan luokan *WeatherService*
 getWeather(String city, long userID)-metodia, joka ensin tarkistaa, onko kyseisestä kaupungista haettu säätietoja viimeisen 10 minuutin aikana (*WeatherDao*) ja seuraavaksi tarkistaa, 
