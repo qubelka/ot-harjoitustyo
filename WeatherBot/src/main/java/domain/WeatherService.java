@@ -37,9 +37,7 @@ public class WeatherService {
         parseInfo(weatherInfo);
 
         if (userDao.contains(userID)) {
-            System.out.println("User founded from HashMap");
             if (userDao.read(userID).getUnits() == 1) {
-                System.out.println("Users units equals 1");
                 return weather.toString();
             } else {
                 return weather.toStringFarenheit();
