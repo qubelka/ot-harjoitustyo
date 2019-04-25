@@ -75,3 +75,4 @@ Lopuksi onUpdateReceived() lähettää käyttäjälle valmiin vastausviestin ja 
 
 ## **Ohjelman rakenteeseen jääneet heikkoudet** 
   
+weatherbot.ui.BotUi.onUpdateReceived() returns checkstyle error : MethodLength	--> Method length exceeds max allowed (20)

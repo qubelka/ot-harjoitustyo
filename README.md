@@ -17,11 +17,13 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [Viikko 5](https://github.com/qubelka/ot-harjoitustyo/releases/tag/viikko5)
 
+[Viikko 6]
+
 ## **Komentorivitoiminnot**
 
 ### **Ohjelman suoritus**
 
-`mvn compile exec:java -Dexec.mainClass=domain.BotApp` 
+`mvn compile exec:java -Dexec.mainClass=weatherbot.domain.BotApp` 
 
 ### **Suoritettavan jarin generointi**
 
@@ -53,4 +55,15 @@ Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
 
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto *target/site/checkstyle.html*
 
+**Huom!** 
+*Bot*-luokan onUpdateReceived(Update update) -metodi ylittää maksimaalisen sallitun pituuden (20 riviä), mutta sen pilkkominen osiksi olisi 
+epäkäytännöllistä, koska se on switch-tyyppinen luokka, ja se ohjaa sovelluksen toimintaa kutsumalla joka päivitykselle oman metodin. 
+
+### **JavaDoc**
+
+JavaDoc generoidaan komennolla
+
+`mvn javadoc:javadoc`
+
+JavaDocia voi tarkastella avaamalla selaimella tiedosto *target/site/apidocs/index.html*
 

@@ -18,4 +18,8 @@
 | 14.4. | 5 | lisätty luokka BotConfiguration; UserDao muokattu (db -> tekstitiedosto); botti osaa reagoida lämpötila-asteiden valintaan; release1 valmiiksi | 
 | 15.4. | 2 | lisätty FakeUserDao + UserDaoTest, BotConfigurationTest, WeatherTest | 
 | 16.4. | 2 | lisäyksiä arkkitehtuuri.md:hen + sekvenssikaavio onUpdateReceived()-metodin toiminnasta |
-| yht | 37 |  |
+| 22.4. | 2 | tutustuminen telegram-boot-springin toimintaan; javadocit osalle luokista, botin testaus |
+| 23.4. | 3 | lisätty h2-tietokantatoiminnot (UserDao päivitetty tallentamaan tietokantaan; UserDaoTest päivitetty); lisätty luokka LocationDao |  
+| 24.4 | 2 | lisätty toiminnallisuus napille "mylocations": ForceReplyKeyboard käyttäjän syötteelle + vastaus, jonka keyboard sisältää käyttäjän sijainnit |
+| 25.4.| 3 | testit luokille WeatherService, Location, LocationDao, BotApp; luokan WeatherService rakennettu selkiytetty
+| yht | 47 |  |

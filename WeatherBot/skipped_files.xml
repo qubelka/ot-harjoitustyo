@@ -5,6 +5,5 @@
     "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress files="ui.BotUi" checks="[a-zA-Z0-9]*"/>
-<!--    <suppress files="tgbots.weatherbot.Bot.java" checks="[a-zA-Z0-9]*"/>-->
+    <suppress files="weatherbot.ui.BotUi" checks="[a-zA-Z0-9]*"/>
 </suppressions>
