@@ -21,5 +21,6 @@
 | 22.4. | 2 | tutustuminen telegram-boot-springin toimintaan; javadocit osalle luokista, botin testaus |
 | 23.4. | 3 | lisätty h2-tietokantatoiminnot (UserDao päivitetty tallentamaan tietokantaan; UserDaoTest päivitetty); lisätty luokka LocationDao |  
 | 24.4 | 2 | lisätty toiminnallisuus napille "mylocations": ForceReplyKeyboard käyttäjän syötteelle + vastaus, jonka keyboard sisältää käyttäjän sijainnit |
-| 25.4.| 3 | testit luokille WeatherService, Location, LocationDao, BotApp; luokan WeatherService rakennettu selkiytetty
-| yht | 47 |  |
+| 25.4.| 3 | testit luokille WeatherService, Location, LocationDao, BotApp; luokan WeatherService rakennetta selkiytetty
+| 26.4 | 2 | lisätty javadocit + käyttöohje |
+| yht | 49 |  |

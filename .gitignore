@@ -5,4 +5,7 @@
 /laskarit/viikko2/harj/nbproject/private/
 /laskarit/viikko2/harj/build/
 /WeatherBot/target/
-/WeatherBot/nbproject/
+/WeatherBot/nbproject/private/
+/WeatherBot/nbbuild/
+/WeatherBot/nbactions.xml
+/WeatherBot/nb-configuration.xml
