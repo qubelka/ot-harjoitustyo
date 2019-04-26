@@ -13,19 +13,42 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import weatherbot.dao.LocationDao;
 
+/**
+ * This class handles weather requests. It provides methods for checking weather, setting units and creating locations. 
+ * 
+ */
 public class WeatherService {
     
     private String errorMessage = "No weather information found for your request, please check the spelling.\nFor help: /help";
     private WeatherDao weatherDao;
+
+    /**
+     * UserDao requests user related information from the database. 
+     */
     public UserDao userDao;
     private LocationDao locationDao;
     
+    /**
+     *
+     * @param weatherDao weatherDao stores and retrieves from the database weather information
+     * @param userDao userDao stores and retrieves from the database user information
+     * @param locationDao locationDao stores and retrieves from the database location information
+     */
     public WeatherService(WeatherDao weatherDao, UserDao userDao, LocationDao locationDao) {
         this.weatherDao = weatherDao;
         this.userDao = userDao;
         this.locationDao = locationDao;
     }
     
+    /**
+     * Returns weather information on a users request
+     * @param city the city for which the weather information is requested 
+     * @param userID the id of the user who has made the weather request
+     * @return returns String with weather information for requested city
+     * @throws IOException if openweathermap api can not find the city
+     * @throws JSONException if weather information returned from the api can not be parsed
+     * @throws SQLException if the object to be added to the database or retrieved from the database is not a weather object 
+     */
     public String getWeather(String city, long userID) throws IOException, JSONException, SQLException {
         if (!checkFormat(city)) {
             return errorMessage;
@@ -45,6 +68,11 @@ public class WeatherService {
         return weatherWithUnits(city, userID);
     }
     
+    /**
+     * Checks that the weather request contains only letters, as it supposed to be in a city name.
+     * @param url city name used in the weather request
+     * @return returns true if the city name is correct (i.e. contains only letters), otherwise returns false
+     */
     public boolean checkFormat(String url) {
         String pattern = "[A-Z-ÖÄÅa-z-öäå]*";
         return url.matches(pattern);
@@ -75,6 +103,12 @@ public class WeatherService {
         return weather;
     }
     
+    /**
+     * Returns user unit preferences 
+     * @param userID the id of the user whose parameters need to be retrieved
+     * @return returns 0 if user has not chosen unit, returns 1 for Celsius and 2 for Fahrenheit
+     * @throws SQLException if user with requested id does not exist in the database
+     */
     public int unitsChosen(long userID) throws SQLException {
         if (userDao.contains(userID)) {
             if (userDao.read(userID).getUnits() == 1) {
@@ -94,16 +128,11 @@ public class WeatherService {
         }
     }
 
-    /*
-    {"coord":{"lon":-0.13,"lat":51.51},
-    "weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}],
-    "base":"stations","main":{"temp":282.58,"pressure":1005,"humidity":76,"temp_min":281.48,"temp_max":284.26},
-    "visibility":10000,"wind":{"speed":5.1,"deg":50},
-    "clouds":{"all":90},"dt":1554561216,
-    "sys":{"type":1,"id":1414,"message":0.0074,"country":"GB","sunrise":1554528315,"sunset":1554576026},
-    "id":2643743,
-    "name":"London",
-    "cod":200}
+    /**
+     * Sets user's units option
+     * @param userID the id of the user whose unit settings need to be changed
+     * @param units units chosen (Celsius or Fahrenheit)
+     * @throws SQLException if user with requested id does not exist in the database
      */
     public void setUnits(Long userID, int units) throws SQLException {
         if (userDao.contains(userID)) {
@@ -130,6 +159,12 @@ public class WeatherService {
         return true;
     }
 
+    /**
+     * Returns all the locations saved by the user 
+     * @param userID the id of the user whose locations list need to be fetched
+     * @return returns a list of locations saved by the user
+     * @throws SQLException if user with requested id does not exist in the database
+     */
     public String getLocations(long userID) throws SQLException {
         List<Location> locations = locationDao.listLocations(userID);
         if (locations.isEmpty()) {
@@ -139,6 +174,14 @@ public class WeatherService {
         return locations.toString().replace("[", "").replace("]", "");
     }
 
+    /**
+     * Adds new location to the list of user's locations
+     * @param city city to be added to the database
+     * @param userID user to whose location list the city is added
+     * @return returns error message if city name is formatted wrong or if the city is already on the list,
+     * otherwise returns a message that the operation succeeded 
+     * @throws SQLException if user with requested id does not exist in the database
+     */
     public String addLocation(String city, long userID) throws SQLException {
         if (!checkFormat(city)) {
             return "City not recognized, please check the spelling";

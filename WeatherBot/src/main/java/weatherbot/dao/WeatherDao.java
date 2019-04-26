@@ -14,14 +14,26 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import weatherbot.domain.User;
 
+/**
+ * This class is used to store and retrieve information about user locations using database. 
+ * UserDao implements Dao interface and represents User entity.
+ * @see weatherbot.dao.Dao
+ */
 @Component
 public class WeatherDao implements Dao<Weather, Integer> {
     
     @Autowired
     JdbcTemplate jdbcTemplate;
     
+    /**
+     * Keeps track of the weather conditions added to the database. Prevents from making 
+     * unnecessary database searches. 
+     */
     public HashMap<String, Integer> cities;
     
+    /**
+     * Creates an empty HashMap-structure when the class is constructed.
+     */
     public WeatherDao() {
         cities = new HashMap<>();
     }
@@ -85,6 +97,11 @@ public class WeatherDao implements Dao<Weather, Integer> {
         return jdbcTemplate.query("SELECT * FROM Weather", new BeanPropertyRowMapper<>(Weather.class));
     }
     
+    /**
+     * Checks if a weather from a certain city has already been added to the database.
+     * @param key city name
+     * @return returns true if weather has been added to the database, otherwise returns false
+     */
     public boolean contains(String key) {
         return cities.containsKey(key);
     }

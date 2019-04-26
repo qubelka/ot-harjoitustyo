@@ -9,15 +9,27 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class is used to store and retrieve information about user locations using database. 
+ * UserDao implements Dao interface and represents User entity.
+ * @see weatherbot.dao.Dao
+ */
 @Component
 public class UserDao implements Dao<User, Long> {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    /**
+     * Keeps track of the users added to the database. Prevents from making 
+     * unnecessary database searches. 
+     */
     public HashMap<Long, User> users;
 
-    public UserDao() throws SQLException {
+    /**
+     * Creates an empty HashMap-structure when the class is constructed.
+     */
+    public UserDao() {
         users = new HashMap<>();
     }
 
@@ -66,7 +78,10 @@ public class UserDao implements Dao<User, Long> {
         return jdbcTemplate.query("SELECT * FROM User", new BeanPropertyRowMapper<>(User.class));
     }
 
-    
+    /**
+     * Loads users and their preferences from the database when the class is created 
+     * @throws SQLException if database is not initialised
+     */
     public void load() throws SQLException {
         List<User> usersInDatabase = list();
         if (usersInDatabase.isEmpty()) {
@@ -78,6 +93,11 @@ public class UserDao implements Dao<User, Long> {
         }
     }
 
+    /**
+     * Checks whether a user with certain id is already added to the database.
+     * @param key user id 
+     * @return returns true if user has been added to the database, otherwise returns false
+     */
     public boolean contains(Long key) {
         return users.containsKey(key);
     }

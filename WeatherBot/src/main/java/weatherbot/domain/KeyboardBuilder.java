@@ -8,8 +8,15 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
+/**
+ * Provides methods for creating different kinds of keyboards for reply messages.
+ */
 public class KeyboardBuilder {
 
+    /**
+     * Returns a keyboard for the main menu of the chat bot. 
+     * @return returns replyKeyboardMarkup with main menu keyboard
+     */
     public ReplyKeyboardMarkup getMainMenuKeyboard() {
         ReplyKeyboardMarkup replyKeyboardMarkup = createReplyKeyboardMarkup();
         List<KeyboardRow> keyboardRowList = new ArrayList<>();
@@ -25,6 +32,11 @@ public class KeyboardBuilder {
         return replyKeyboardMarkup;
     }
 
+    /**
+     * Creates and returns a keyboard for the unit settings request in the chat bot. 
+     * Inline keyboard appears in the chat field as a reply to users request.
+     * @return returns inlineKeyboardMarkup with units menu keyboard
+     */
     public InlineKeyboardMarkup getUnitsKeyboard() {
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
@@ -39,6 +51,12 @@ public class KeyboardBuilder {
         return markupInline;
     }
 
+    /**
+     * Returns a keyboard for the location settings request in the chat bot. 
+     * @param reply a list of locations saved by user, if user has not saved any locations yet, 
+     * the reply will contain an info message  
+     * @return returns replyKeyboardMarkup with possible saved locations and options for adding new location or returning back
+     */
     public ReplyKeyboardMarkup getLocationsKeyboard(String reply) {
         ReplyKeyboardMarkup replyKeyboardMarkup = createReplyKeyboardMarkup();
         List<KeyboardRow> keyboardRowList = new ArrayList<>();
@@ -60,6 +78,10 @@ public class KeyboardBuilder {
         return replyKeyboardMarkup;
     }
 
+    /**
+     * Creates and returns replyKeyboardMarkup
+     * @return replyKeyboardMarkup
+     */
     public ReplyKeyboardMarkup createReplyKeyboardMarkup() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setSelective(true);

@@ -17,14 +17,39 @@ import java.util.Properties;
 
 public class BotConfiguration {
 
+    /**
+     * The name of the bot registered in telegram api. 
+     * The name of the current bot is "HarjoitustyoWeatherbot". 
+     */
     public String botName;
+
+    /**
+     * The token of the bot registered in telegram api. 
+     * The token of the current bot is "789067379:AAH7xM9S9Th-cKqdYbFowXIEBzb8vF3z3wo".
+     */
     public String botToken;
 
+    /**
+     * The url with database name used to establish connection to h2-database. 
+     * The url of the current bot is "jdbc:h2:./weather".
+     * Bot stores information in a database called "weather".
+     */
     public String dbUrl;
+
+    /**
+     * The username used to establish the connection to h2-database ("sa" by default). 
+     */
     public String dbUser;
+
+    /**
+     * The password used to establish the connection to h2-database (empty by default).  
+     */
     public String dbPassword;
 
-    
+    /**
+     * Loads all of the bots' configurations when the class is constructed.
+     * @throws IOException if application can not read the file
+     */
     public BotConfiguration() throws IOException {
         load();
     }
@@ -87,22 +112,37 @@ public class BotConfiguration {
         return properties;
     }
 
+    /**
+     * @return returns bot name
+     */
     public String getBotName() {
         return botName;
     }
 
+    /**
+     * @return returns bot token
+     */
     public String getBotToken() {
         return botToken;
     }
 
+    /**
+     * @return returns database url
+     */
     public String getDbUrl() {
         return dbUrl;
     }
 
+    /**
+     * @return returns username for creating database connection  
+     */
     public String getDbUser() {
         return dbUser;
     }
 
+    /**
+     * @return returns password for creating database connection 
+     */
     public String getDbPassword() {
         return dbPassword;
     }

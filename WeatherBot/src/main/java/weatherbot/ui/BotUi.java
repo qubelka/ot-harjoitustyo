@@ -15,9 +15,8 @@ import weatherbot.domain.WeatherService;
 public class BotUi {
 
     /**
-     * Loads configuration files, initialises bot in telegram environment and
-     * starts the botApi.
-     *
+     * Loads configuration files, initialises bot in telegram environment and starts the botApi.
+     * @param weatherService weatherService handles weather requests
      * @throws IOException if application can not read configuration files
      */
     public void start(WeatherService weatherService) throws Exception {

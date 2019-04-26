@@ -23,6 +23,12 @@ public class Bot extends TelegramLongPollingBot {
     private WeatherService weatherService;
     private ReplyMessage replyMessage;
 
+    /**
+     * Creates a new bot entity with injected parameters
+     * @param weatherService weatherService handles weather requests
+     * @param replyMessage replyMessage creates reply messages for user replies
+     * @param botConfiguration botConfiguration loads bot and database settings from properties-files
+     */
     public Bot(WeatherService weatherService, ReplyMessage replyMessage, BotConfiguration botConfiguration) {
         this.botConfiguration = botConfiguration;
         this.weatherService = weatherService;
@@ -30,10 +36,8 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     /**
-     * Returns the name of the registered bot. This method is used to initialise
-     * the bot in telegram.
-     *
-     * @see weatherbot.ui.BotUi#start()
+     * Returns the name of the registered bot. This method is used to initialise the bot in telegram.
+     * @see weatherbot.ui.BotUi#start(WeatherService weatherService)
      * @return returns the name of the bot
      */
     @Override
@@ -42,10 +46,8 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     /**
-     * Returns the token of the registered bot. This method is used to
-     * initialise the bot in telegram
-     *
-     * @see weatherbot.ui.BotUi#start()
+     * Returns the token of the registered bot. This method is used to initialise the bot in telegram
+     * @see weatherbot.ui.BotUi#start(WeatherService weatherService)
      * @return returns the token of the bot
      */
     @Override
@@ -154,17 +156,17 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     /**
-     * Returns text with help instructions. This method is used to generate an
-     * answer for the help request.
-     *
-     * @see
-     * weatherbot.domain.Bot#onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update)
+     * Returns text with help instructions. This method is used to generate an answer for the help request.
+     * @see weatherbot.domain.Bot#onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update)
      * @return returns a String object with help instructions
      */
     private String getHelpText() {
         return "To check weather: type city name or choose one from\n /my_locations. To set units:\n /units. To add new location:\n /my_locations";
     }
 
+    /**
+     * Initialises the database used to store user and weather information.
+     */
     public void initDatabase() {
         String weatherTable = getWeatherTable();
         String userTable = getUserTable();
@@ -182,6 +184,10 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    /**
+     * Returns a sql request used to create a Weather table
+     * @return returns a string with sql request
+     */
     public String getWeatherTable() {
         String weather = "CREATE TABLE Weather (\n"
                 + "    id INTEGER AUTO_INCREMENT PRIMARY KEY,\n"
@@ -196,6 +202,10 @@ public class Bot extends TelegramLongPollingBot {
         return weather;
     }
 
+    /**
+     * Returns a sql request used to create a User table
+     * @return returns a string with sql request
+     */
     public String getUserTable() {
         String user = "CREATE TABLE User (\n"
                 + "    id INTEGER PRIMARY KEY,\n"
@@ -205,6 +215,10 @@ public class Bot extends TelegramLongPollingBot {
         return user;
     }
 
+    /**
+     * Returns a sql request used to create a Locations table
+     * @return returns a string with sql request
+     */
     public String getLocationsTable() {
         String locations = "CREATE TABLE Locations (\n"
                 + "    id INTEGER AUTO_INCREMENT PRIMARY KEY,\n"
