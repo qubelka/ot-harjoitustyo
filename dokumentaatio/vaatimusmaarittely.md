@@ -27,3 +27,4 @@ Käyttäjä voi tallentaa omat sijaintitiedot sovellukseen ja hakea säätä jat
 osallistujille)  
 - sovellus näyttää useamman päivän sääennusteen 
 - sovellus näyttää tarkempia tietoja, mm. tuulen suunnan, tuulen nopeuden, paineen jne. 
+- "omat sijainnit" -listalta voi poistaa sijainteja

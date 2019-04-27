@@ -62,7 +62,7 @@ public class ReplyMessage {
         SendMessage replyToReceived = new SendMessage()
                 .setReplyMarkup(replyKeyboardMarkup)
                 .setChatId(received.getChatId())
-                .setText("Please select location from the list or add a new one: ");
+                .setText("Please select a location from the list or add a new one: ");
 
         return replyToReceived;
     }
@@ -74,7 +74,7 @@ public class ReplyMessage {
                 .setReplyMarkup(forceReplyKeyboard)
                 .setChatId(received.getChatId())
                 .setReplyToMessageId(received.getMessageId())
-                .setText("Please enter city name: ");
+                .setText("Please enter a city name: ");
 
         return replyToReceived;
     }

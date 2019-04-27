@@ -105,7 +105,7 @@ public class Bot extends TelegramLongPollingBot {
                     reply = replyMessage.sendDefaultReply(received, getHelpText());
                     break;
                 case "units":
-                    reply = replyMessage.sendUnitsReply(received, "Please choose units:");
+                    reply = replyMessage.sendUnitsReply(received, "Please choose your preferred units:");
                     break;
                 case "my locations":
                     try {
@@ -115,7 +115,7 @@ public class Bot extends TelegramLongPollingBot {
                     }
                     break;
                 case "search by city name":
-                    reply = replyMessage.sendDefaultReply(received, "Please enter city name: ");
+                    reply = replyMessage.sendDefaultReply(received, "Please enter a city name: ");
                     break;
                 default:
                     if (received.isReply()) {
@@ -149,7 +149,7 @@ public class Bot extends TelegramLongPollingBot {
         } else if (update.hasCallbackQuery()) {
             Message callback = update.getCallbackQuery().getMessage();
             String callData = update.getCallbackQuery().getData();
-            SendMessage reply = replyMessage.sendDefaultReply(callback, "oops, something went wrong");
+            SendMessage reply = replyMessage.sendDefaultReply(callback, "Oops, something went wrong. Press any button to continue.");
             if (callData.equals("update_celcius")) {
                 reply = replyMessage.sendDefaultReply(callback, "Current weather units: °C");
                 try {
@@ -188,13 +188,14 @@ public class Bot extends TelegramLongPollingBot {
      * @return returns a String object with help instructions
      */
     private String getHelpText() {
-        return "To check weather: type city name or choose one from\n /my_locations. To set units:\n /units. To add new location:\n /my_locations";
+        return "To check the weather: "
+                + "type a city name or choose one from\n /my_locations. To set the units:\n /units. To add new location:\n /my_locations";
     }
 
     private String getWelcomeText() {
-        String welcome = "The Weather-bot is a simple application for searching weather."
-                + "The information about current weather is fetched from Openweathermap-api."
-                + "To check weather: type city name or choose one from\n /my_locations. To set units:\n /units. To add new location:\n /my_locations";
+        String welcome = "The Weather-bot is a simple application for searching weather. "
+                + "The information about the current weather is fetched from Openweathermap-api. "
+                + "To check the weather: type a city name or choose one from\n /my_locations. To set units:\n /units. To add new location:\n /my_locations";
 
         return welcome;
     }

@@ -79,19 +79,26 @@ public class BotTest {
     }
 
     @Test
+    public void botCanReceiveStartRequest() {
+        createFakeUpdateConditions();
+        Mockito.when(message.getText()).thenReturn("start");
+        executeUpdate();
+    }
+
+    @Test
     public void botCanReceiveBackRequest() {
         createFakeUpdateConditions();
         Mockito.when(message.getText()).thenReturn("back");
         executeUpdate();
     }
-    
+
     @Test
-        public void botCanReceiveAddNewLocationRequest() {
+    public void botCanReceiveAddNewLocationRequest() {
         createFakeUpdateConditions();
         Mockito.when(message.getText()).thenReturn("add new location");
         executeUpdate();
     }
-    
+
     @Test
     public void botCanReceiveHelpRequests() {
         createFakeUpdateConditions();
@@ -128,7 +135,7 @@ public class BotTest {
         Mockito.when(message.getText()).thenReturn("Helsinki");
         executeUpdate();
     }
-    
+
     @Test
     public void botCanCatchUserReply() throws SQLException {
         createFakeUpdateConditions();
@@ -137,14 +144,14 @@ public class BotTest {
         Mockito.when(message.getText()).thenReturn("Athens");
         executeUpdate();
     }
-    
+
     @Test
     public void botCanCatchCallbackQueryForCelciusUnits() {
         createFakeUpdateConditionsForCallBackQuery();
         Mockito.when(update.getCallbackQuery().getData()).thenReturn("update_celcius");
         executeUpdate();
     }
-    
+
     @Test
     public void botCanCatchCallbackQueryForFahrenheitUnits() {
         createFakeUpdateConditionsForCallBackQuery();
@@ -165,12 +172,12 @@ public class BotTest {
     public void createFakeUpdateConditionsForWeatherSearch() throws IOException, JSONException, SQLException {
         Mockito.when(weatherService.getWeather(message.getText(), message.getChatId())).thenReturn("weatherInfo");
     }
-    
+
     public void createFakeUpdateConditionsForLocationsRequest() throws SQLException {
         Mockito.when(weatherService.getLocations(message.getChatId())).thenReturn("Oslo");
         Mockito.when(weatherService.addLocation(message.getText(), message.getChatId())).thenReturn("location added successfully");
     }
-    
+
     public void createFakeUpdateConditionsForCallBackQuery() {
         update = Mockito.mock(Update.class);
         message = Mockito.mock(Message.class);
@@ -182,7 +189,7 @@ public class BotTest {
         Mockito.when(update.getCallbackQuery().getMessage()).thenReturn(message);
         Mockito.when(update.getCallbackQuery().getMessage().getChatId()).thenReturn(12345678l);
     }
-    
+
     public void executeUpdate() {
         bot.onUpdateReceived(update);
         verify(bot, times(1)).onUpdateReceived(update);

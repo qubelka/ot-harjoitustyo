@@ -75,4 +75,23 @@ Lopuksi onUpdateReceived() lähettää käyttäjälle valmiin vastausviestin ja 
 
 ## **Ohjelman rakenteeseen jääneet heikkoudet** 
   
-weatherbot.ui.BotUi.onUpdateReceived() returns checkstyle error : MethodLength	--> Method length exceeds max allowed (20)
+### **käyttöliittymä**
+
+Desktop-sovelluksen tekstikäyttöliittymä on jäänyt suppeaksi, koska sitä korvaavat telegram-apin valmiit metodit. Bot reagoi käyttäjän komentoihin onUpdateReceived()-metodin avulla, ja
+kaikki viestintä tapahtuu telegrammin puolella.
+
+### **koodin rakenne**  
+
+Metodi onUpdateReceived() ylittää checkstylen määrittämän metodin maksimipituuden, mutta sen pilkkominen osiksi olisi epäkäytännöllistä, koska se on switch-tyyppinen luokka, 
+ja se ohjaa sovelluksen toimintaa kutsumalla joka päivitykselle oman metodin. 
+
+Luokassa ReplyMessage on jonkin verran toisteista koodia, mutta esimerkiksi jos SendMessagen luominen eriytettäisiin omaan luokkaan, niin tämä ei vaikuttaisi asiaan paljon,
+koska SendMessage-objekti vaatii replyMarkupin tyypin, joten se olisi annettava metodille parametrina, mutta samaa replyKeyboardMarkuppia käytetään 
+vain kahdessa sendReply-metodissa, joten muut sendReply-metodit eivät pääsisi hyödyntämään tätä uutta metodia.   
+
+### **toiminnot**
+
+Ohjelman toiminnassa ja toiminnoissa on joitakin puutteita: esimerkiksi haut tapahtuu vain yhdellä kielellä, "my locations" -listalta ei pääse poistamaan sijainteja, sääkuvio näkyy vain puhelinsovelluksessa. 
+Koodikatselmoinnin yhteydessä myös kävi ilmi, että botti saattaa lähettää duplikoituja viestejä, ja ilmeisesti taustalla on reititysongelma, jota en pysty ratkaisemaan tämän kurssin puitteissa. 
+
+

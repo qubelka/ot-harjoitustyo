@@ -69,7 +69,7 @@ public class KeyboardBuilder {
             }
         }
         KeyboardRow location = new KeyboardRow();
-        location.add(new KeyboardButton("add new location"));
+        location.add(new KeyboardButton("add a new location"));
         KeyboardRow back = new KeyboardRow();
         back.add(new KeyboardButton("back"));
         keyboardRowList.add(location);
