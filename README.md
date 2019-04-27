@@ -19,6 +19,11 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [Viikko 6](https://github.com/qubelka/ot-harjoitustyo/releases/tag/viikko6)
 
+## **Duplikoidut viestit**
+
+Botti on suunniteltu käynnistettäväksi yhdeltä koneelta. Jos botti on käynnissä samaan aikaan usealla koneella, tämä aiheuttaa häiriöitä tg:n puolella ja viestit tulee duplikoituina. Yksi tapa
+välttää tätä ongelmaa: rekisteröidä oma botti telegrammissa ja antaa sen tiedot (nimi ja token) weatherbot-sovellukselle.  
+
 ## **Komentorivitoiminnot**
 
 ### **Ohjelman suoritus**

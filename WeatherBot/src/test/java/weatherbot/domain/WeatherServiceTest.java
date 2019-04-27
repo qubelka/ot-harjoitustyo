@@ -6,6 +6,7 @@ import weatherbot.domain.WeatherService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 import org.json.JSONException;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -46,7 +47,9 @@ public class WeatherServiceTest {
         
     @After
     public void tearDown() throws SQLException {
-        userDao.delete(user.getId());
+        locationDao.clear();
+        userDao.clear();
+        weatherDao.clear();
     }
     
     @Test
@@ -66,7 +69,6 @@ public class WeatherServiceTest {
         userDao.create(newUser);
         String weatherInformation = weatherService.getWeather("Athens", 99999999l);
         assertTrue(weatherInformation.contains("°C"));
-        userDao.delete(user.getId());
     }
     
     @Test
@@ -79,14 +81,14 @@ public class WeatherServiceTest {
     public void updatesWeatherIfTenMinutesExpired() throws SQLException, IOException, JSONException {
         Weather weather = createWeather();
         weatherService.getWeather("Oslo", user.getId());
-        assertThat(weather, is(not(weatherDao.read(1))));
+        List<Weather> lisatyt = weatherDao.list();
+        assertThat(weather, is(not(lisatyt.get(0))));
     }
     
     @Test
     public void createsNewLocationIfDoesntExistYet() throws SQLException {     
         String reply = "Location Helsinki has been successfully added to your locations";
         assertThat(weatherService.addLocation("Helsinki", 12345678l), is(reply));
-        locationDao.delete(1);
     }
     
     @Test
@@ -110,7 +112,6 @@ public class WeatherServiceTest {
     public void setUnitsCreatesNewUserIfNotOnTheList() throws SQLException {
          weatherService.setUnits(77777777l, 1);
          assertTrue(userDao.contains(77777777l));
-         userDao.delete(77777777l);
     }
     
     @Test
@@ -131,7 +132,6 @@ public class WeatherServiceTest {
         Location location = new Location("Berlin", 12345678l);
         location = locationDao.create(location);
         assertThat(weatherService.addLocation("Berlin", user.getId()), is(errorMessage));
-        locationDao.delete(location.getId());
     }
     
     @Test
@@ -139,7 +139,6 @@ public class WeatherServiceTest {
         Location location = new Location("Berlin", 12345678l);
         location = locationDao.create(location);
         assertFalse(weatherService.getLocations(12345678l).isEmpty());
-        locationDao.delete(location.getId());
     }
 
     private Weather createWeather() throws SQLException {

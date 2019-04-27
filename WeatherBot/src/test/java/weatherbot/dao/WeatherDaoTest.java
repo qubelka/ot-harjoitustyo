@@ -44,7 +44,7 @@ public class WeatherDaoTest {
     
     @After
     public void tearDown() throws SQLException {
-        weatherDao.delete(weather.getId());
+        weatherDao.clear();
     }
 
     @Test

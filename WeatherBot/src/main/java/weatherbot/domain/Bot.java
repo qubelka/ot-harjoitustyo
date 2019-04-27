@@ -1,12 +1,14 @@
 package weatherbot.domain;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.LogManager;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -19,15 +21,30 @@ import weatherbot.configuration.BotConfiguration;
  */
 public class Bot extends TelegramLongPollingBot {
 
+    private static final Logger LOGGER;
+
+    static {
+        InputStream stream = Bot.class.getClassLoader().
+                getResourceAsStream("logging.properties");
+        try {
+            LogManager.getLogManager().readConfiguration(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        LOGGER = Logger.getLogger(Bot.class.getName());
+    }
+
     private BotConfiguration botConfiguration;
     private WeatherService weatherService;
     private ReplyMessage replyMessage;
 
     /**
      * Creates a new bot entity with injected parameters
+     *
      * @param weatherService weatherService handles weather requests
      * @param replyMessage replyMessage creates reply messages for user replies
-     * @param botConfiguration botConfiguration loads bot and database settings from properties-files
+     * @param botConfiguration botConfiguration loads bot and database settings
+     * from properties-files
      */
     public Bot(WeatherService weatherService, ReplyMessage replyMessage, BotConfiguration botConfiguration) {
         this.botConfiguration = botConfiguration;
@@ -36,7 +53,9 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     /**
-     * Returns the name of the registered bot. This method is used to initialise the bot in telegram.
+     * Returns the name of the registered bot. This method is used to initialise
+     * the bot in telegram.
+     *
      * @see weatherbot.ui.BotUi#start(WeatherService weatherService)
      * @return returns the name of the bot
      */
@@ -46,7 +65,9 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     /**
-     * Returns the token of the registered bot. This method is used to initialise the bot in telegram
+     * Returns the token of the registered bot. This method is used to
+     * initialise the bot in telegram
+     *
      * @see weatherbot.ui.BotUi#start(WeatherService weatherService)
      * @return returns the token of the bot
      */
@@ -71,6 +92,9 @@ public class Bot extends TelegramLongPollingBot {
             SendMessage reply = replyMessage.sendDefaultReply(received, "No weather information found for your request, please check the spelling.\nFor help: /help");
             String generalizedRequest = received.getText().replaceAll("/", "").replaceAll("_", " ");
             switch (generalizedRequest) {
+                case "start":
+                    reply = replyMessage.sendDefaultReply(received, getWelcomeText());
+                    break;
                 case "back":
                     reply = replyMessage.sendDefaultReply(received, getHelpText());
                     break;
@@ -87,7 +111,7 @@ public class Bot extends TelegramLongPollingBot {
                     try {
                         reply = replyMessage.sendLocationsReply(received, weatherService.getLocations(userID));
                     } catch (SQLException ex) {
-                        Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+                        LOGGER.log(Level.SEVERE, "null");
                     }
                     break;
                 case "search by city name":
@@ -98,18 +122,18 @@ public class Bot extends TelegramLongPollingBot {
                         try {
                             reply = replyMessage.sendDefaultReply(received, weatherService.addLocation(generalizedRequest, userID));
                         } catch (SQLException ex) {
-                            Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+                            LOGGER.log(Level.SEVERE, "null");
                         }
                         break;
                     }
                     try {
                         reply = replyMessage.sendDefaultReply(received, weatherService.getWeather(generalizedRequest, userID));
                     } catch (JSONException ex) {
-                        Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+                        LOGGER.log(Level.SEVERE, "null");
                     } catch (IOException ex) {
-                        Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+                        LOGGER.log(Level.SEVERE, "null");
                     } catch (SQLException ex) {
-                        Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+                        LOGGER.log(Level.SEVERE, "null");
                     }
                     break;
             }
@@ -131,14 +155,14 @@ public class Bot extends TelegramLongPollingBot {
                 try {
                     weatherService.setUnits(callback.getChatId(), 1);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+                    LOGGER.log(Level.SEVERE, "null");
                 }
             } else if (callData.contains("update_fahrenheit")) {
                 reply = replyMessage.sendDefaultReply(callback, "Current weather units: °F");
                 try {
                     weatherService.setUnits(callback.getChatId(), 2);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+                    LOGGER.log(Level.SEVERE, "null");
                 }
             }
 
@@ -150,42 +174,57 @@ public class Bot extends TelegramLongPollingBot {
                 execute(reply);
             } catch (TelegramApiException e) {
                 e.printStackTrace();
-                System.out.println("Exception in executing callbackquery");
+                 LOGGER.log(Level.SEVERE, "Exception in executing callbackquery");
             }
         }
     }
 
     /**
-     * Returns text with help instructions. This method is used to generate an answer for the help request.
-     * @see weatherbot.domain.Bot#onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update)
+     * Returns text with help instructions. This method is used to generate an
+     * answer for the help request.
+     *
+     * @see
+     * weatherbot.domain.Bot#onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update)
      * @return returns a String object with help instructions
      */
     private String getHelpText() {
         return "To check weather: type city name or choose one from\n /my_locations. To set units:\n /units. To add new location:\n /my_locations";
     }
 
+    private String getWelcomeText() {
+        String welcome = "The Weather-bot is a simple application for searching weather."
+                + "The information about current weather is fetched from Openweathermap-api."
+                + "To check weather: type city name or choose one from\n /my_locations. To set units:\n /units. To add new location:\n /my_locations";
+
+        return welcome;
+    }
+
     /**
      * Initialises the database used to store user and weather information.
      */
-    public void initDatabase() {
-        String weatherTable = getWeatherTable();
-        String userTable = getUserTable();
-        String locationsTable = getLocationsTable();
+    public void initDatabase() throws SQLException {
+        Connection conn = null;
 
-        try (Connection conn = DriverManager.getConnection(botConfiguration.dbUrl, botConfiguration.dbUser, botConfiguration.dbPassword)) {
+        try {
+            conn = DriverManager.getConnection(botConfiguration.dbUrl, botConfiguration.dbUser, botConfiguration.dbPassword);
             conn.prepareStatement("DROP TABLE Weather IF EXISTS;").executeUpdate();
-            conn.prepareStatement(weatherTable).executeUpdate();
+            conn.prepareStatement(getWeatherTable()).executeUpdate();
             conn.prepareStatement("DROP TABLE User IF EXISTS;").executeUpdate();
-            conn.prepareStatement(userTable).executeUpdate();
+            conn.prepareStatement(getUserTable()).executeUpdate();
             conn.prepareStatement("DROP TABLE Locations IF EXISTS;").executeUpdate();
-            conn.prepareStatement(locationsTable).executeUpdate();
+            conn.prepareStatement(getLocationsTable()).executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(Bot.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "null");
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
         }
     }
 
     /**
      * Returns a sql request used to create a Weather table
+     *
      * @return returns a string with sql request
      */
     public String getWeatherTable() {
@@ -204,6 +243,7 @@ public class Bot extends TelegramLongPollingBot {
 
     /**
      * Returns a sql request used to create a User table
+     *
      * @return returns a string with sql request
      */
     public String getUserTable() {
@@ -217,6 +257,7 @@ public class Bot extends TelegramLongPollingBot {
 
     /**
      * Returns a sql request used to create a Locations table
+     *
      * @return returns a string with sql request
      */
     public String getLocationsTable() {

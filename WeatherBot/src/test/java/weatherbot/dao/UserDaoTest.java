@@ -40,7 +40,7 @@ public class UserDaoTest {
     
     @After
     public void tearDown() throws SQLException {
-        userDao.delete(user.getId());
+        userDao.clear();
     }
 
     @Test
