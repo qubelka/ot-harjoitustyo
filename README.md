@@ -7,6 +7,8 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 ## **Dokumentaatio**
 
+[Käyttöohje](dokumentaatio/kayttoohje.md)
+
 [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
 
 [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
