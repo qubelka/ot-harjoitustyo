@@ -32,11 +32,11 @@ Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
 
 ### **Asennus ja konfigurointi**
 
-Sovellus on haettu ja sitä on testattu [käyttöohjeen]() kuvaamalla tavalla Linux-ympäristöön. Käyttöohjeessa on linkki ladattavaan jar-tiedostoon, johon kaikki sovelluksen tarvittamat konfiguraatiotiedostot on pakattu valmiiksi. Sovellus luo tietokantatiedoston automaattisesti siihen kansioon, missä .jar suoritetaan. 
+Sovellus on haettu ja sitä on testattu [käyttöohjeen](https://github.com/qubelka/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md) kuvaamalla tavalla Linux-ympäristöön. Käyttöohjeessa on linkki ladattavaan jar-tiedostoon, johon kaikki sovelluksen tarvittamat konfiguraatiotiedostot on pakattu valmiiksi. Sovellus luo tietokantatiedoston automaattisesti siihen kansioon, missä .jar suoritetaan. 
 
 ### **Toiminnallisuudet**
 
-Kaikki [määrittelydokumentin]() ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on syötekentät yritetty täyttää myös virheellisillä arvoilla kuten tyhjillä. 
+Kaikki [määrittelydokumentin](https://github.com/qubelka/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on syötekentät yritetty täyttää myös virheellisillä arvoilla kuten tyhjillä. 
 
 ## **Sovellukseen jääneet laatuongelmat**
 
