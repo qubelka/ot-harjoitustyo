@@ -6,8 +6,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ForceReplyKeyboa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
-import weatherbot.domain.KeyboardBuilder;
-
 /**
  * This class is used to create reply messages that are sent as answers to user requests.
  */

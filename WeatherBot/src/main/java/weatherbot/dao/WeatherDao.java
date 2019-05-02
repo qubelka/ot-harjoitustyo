@@ -5,14 +5,12 @@ import weatherbot.domain.Weather;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import weatherbot.domain.User;
 
 /**
  * This class is used to store and retrieve information about user locations

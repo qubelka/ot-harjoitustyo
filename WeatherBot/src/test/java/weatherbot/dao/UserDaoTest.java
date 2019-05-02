@@ -97,6 +97,8 @@ public class UserDaoTest {
         userDao.load();
         assertFalse(userDao.contains(user.getId()));
         user = userDao.create(user);
+        userDao.load();
+        assertTrue(userDao.contains(user.getId()));
     }
 
 }

@@ -2,9 +2,6 @@ package weatherbot.ui;
 
 import java.io.IOException;
 import java.util.Scanner;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import weatherbot.configuration.BotConfiguration;
@@ -46,7 +43,7 @@ public class BotUi {
                     + "2) search for @HarjoitustyoWeatherbot\n"
                     + "4) type some text or press any button\n");
             System.out.println("");
-            System.out.println("To stop app type \"close\" in Netbeans)\n"
+            System.out.println("To stop app type \"close\" in Netbeans\n"
                     + "or CTRL+Z in bash");
             String reply = scanner.nextLine();
             if (reply.equals("close")) {

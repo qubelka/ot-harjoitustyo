@@ -24,5 +24,5 @@
 | 25.4. | 3 | testit luokille WeatherService, Location, LocationDao, BotApp; luokan WeatherService rakennetta selkiytetty
 | 26.4. | 2 | lisätty javadocit + käyttöohje |
 | 27.4. | 3 | lisätty logger.properties; yritetty selvittää, miksi botti duplikoi viestejä; päivitetty arkkitehtuurikuvausta |  
-| 2.5. | 3 | lisätty FakeBotApp testejä varten; lisätty toiminto, joka sulkee spring-kontekstin; checkstyle+javadoc, korjattu virheitä |
-| yht | 55 |  |
+| 2.5. | 5 | lisätty FakeBotApp testejä varten; lisätty toiminto, joka sulkee spring-kontekstin; checkstyle+javadoc, korjattu virheitä; testaus.md |
+| yht | 57 |  |

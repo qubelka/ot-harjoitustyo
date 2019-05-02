@@ -21,6 +21,8 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [Viikko 6](https://github.com/qubelka/ot-harjoitustyo/releases/tag/viikko6)
 
+[loppupalautus](https://github.com/qubelka/ot-harjoitustyo/releases/tag/loppupalautus)
+
 ## **Duplikoidut viestit**
 
 Botti on suunniteltu käynnistettäväksi yhdeltä koneelta. Jos botti on käynnissä samaan aikaan usealla koneella, tämä aiheuttaa häiriöitä tg:n puolella ja viestit tulee duplikoituina. Yksi tapa

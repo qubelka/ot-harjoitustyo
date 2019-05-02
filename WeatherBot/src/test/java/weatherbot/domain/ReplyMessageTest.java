@@ -6,11 +6,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.verify;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import weatherbot.domain.KeyboardBuilder;
-import weatherbot.domain.ReplyMessage;
 
 public class ReplyMessageTest {
 
