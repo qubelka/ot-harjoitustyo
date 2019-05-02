@@ -1,6 +1,6 @@
 # **Käyttöohje**
 
-Lataa tiedosto [WeatherBot.jar](https://github.com/qubelka/ot-harjoitustyo/releases/download/viikko6/WeatherBot.jar)
+Lataa tiedosto [WeatherBot.jar](https://github.com/qubelka/ot-harjoitustyo/releases/download/loppupalautus/WeatherBot.jar)
 
 ## **Konfigurointi**
 
