@@ -39,7 +39,7 @@ public class Bot extends TelegramLongPollingBot {
     private ReplyMessage replyMessage;
 
     /**
-     * Creates a new bot entity with injected parameters
+     * Creates a new bot entity with injected parameters.
      *
      * @param weatherService weatherService handles weather requests
      * @param replyMessage replyMessage creates reply messages for user replies
@@ -174,7 +174,7 @@ public class Bot extends TelegramLongPollingBot {
                 execute(reply);
             } catch (TelegramApiException e) {
                 e.printStackTrace();
-                 LOGGER.log(Level.SEVERE, "Exception in executing callbackquery");
+                LOGGER.log(Level.SEVERE, "Exception in executing callbackquery");
             }
         }
     }
@@ -202,6 +202,7 @@ public class Bot extends TelegramLongPollingBot {
 
     /**
      * Initialises the database used to store user and weather information.
+     * @throws SQLException if database can not be initialised
      */
     public void initDatabase() throws SQLException {
         Connection conn = null;
@@ -224,7 +225,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     /**
-     * Returns a sql request used to create a Weather table
+     * Returns a sql request used to create a Weather table.
      *
      * @return returns a string with sql request
      */
@@ -243,7 +244,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     /**
-     * Returns a sql request used to create a User table
+     * Returns a sql request used to create a User table.
      *
      * @return returns a string with sql request
      */
@@ -257,7 +258,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     /**
-     * Returns a sql request used to create a Locations table
+     * Returns a sql request used to create a Locations table.
      *
      * @return returns a string with sql request
      */

@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import weatherbot.domain.Weather;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = weatherbot.domain.BotApp.class)
+@SpringBootTest(classes = weatherbot.domain.FakeBotApp.class)
 public class WeatherDaoTest {
 
     @Autowired

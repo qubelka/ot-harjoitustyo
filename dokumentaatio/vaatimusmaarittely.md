@@ -1,5 +1,8 @@
 # **Vaatimusmäärittely: Telegram-sääbotti**
 
+Botti on toteutettu alkuperäisen suunnitelman mukaan, joten vaatimusmäärittelyyn ei tule muutoksia. Sovellus toteuttaa kaikki vaatimusmäärittelyssä määritellyt toiminnot eli hakee säätä, tallentaa käyttäjien
+tietoja myöhempiä hakuja varten ja näyttää säätä Celcius- tai Fahrenheit-asteina. Jatkokehitysideoita ei ehtinyt toteuttaa projektin aikana.    
+
 ## **Sovelluksen tarkoitus**
 
 Sääbotin avulla käyttäjä voi hakea tämänhetkiset säätiedot yhdestä kaupungista ympäri maailmaa. Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden ja
@@ -18,7 +21,7 @@ Sovellus periaatteessa koostuu kahdesta näkymästä: perusvalikko ja "my locati
 
 ## **Perusversion tarjoama toiminnallisuus**
 
-Säätietoja voi hakea kaupungin (tai vaihtoehtoisesti kaupungin ja maan) perusteella yhdellä kielellä - englannilla. Käyttäjä voi valita, näytetäänkö lämpötila Celsius- vai Farenheit-asteina. 
+Säätietoja voi hakea kaupungin (tai vaihtoehtoisesti kaupungin ja maan) perusteella yhdellä kielellä - englannilla. Käyttäjä voi valita, näytetäänkö lämpötila Celsius- vai Fahrenheit-asteina. 
 Käyttäjä voi tallentaa omat sijaintitiedot sovellukseen ja hakea säätä jatkossa tämän sijaintitiedon perusteella.
  
 ## **Jatkokehitysideoita**

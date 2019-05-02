@@ -16,7 +16,7 @@ public class ReplyMessage {
     private KeyboardBuilder keyboardBuilder;
 
     /**
-     * Creates Keyboardbuilder object when the class is constructed
+     * Creates Keyboardbuilder object when the class is constructed.
      * @param keyboardBuilder keyboardBuilder creates keyboards
      */
     public ReplyMessage(KeyboardBuilder keyboardBuilder) {

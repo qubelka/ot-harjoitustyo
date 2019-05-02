@@ -69,7 +69,7 @@ public class KeyboardBuilder {
             }
         }
         KeyboardRow location = new KeyboardRow();
-        location.add(new KeyboardButton("add a new location"));
+        location.add(new KeyboardButton("add new location"));
         KeyboardRow back = new KeyboardRow();
         back.add(new KeyboardButton("back"));
         keyboardRowList.add(location);
@@ -79,7 +79,7 @@ public class KeyboardBuilder {
     }
 
     /**
-     * Creates and returns replyKeyboardMarkup
+     * Creates and returns replyKeyboardMarkup.
      * @return replyKeyboardMarkup
      */
     public ReplyKeyboardMarkup createReplyKeyboardMarkup() {

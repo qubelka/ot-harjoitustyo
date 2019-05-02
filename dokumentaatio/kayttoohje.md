@@ -4,7 +4,7 @@ Lataa tiedosto [WeatherBot.jar](https://github.com/qubelka/ot-harjoitustyo/relea
 
 ## **Konfigurointi**
 
-Kaikki ohjelman tarvitsemat konfiguraatiotiedostot (*bot.properties* ja *database.properties*) sekä lokitustasosta vastaava *logback.xml*
+Kaikki ohjelman tarvitsemat konfiguraatiotiedostot (*bot.properties*, *database.properties* ja *logging.properties*) sekä lokitustasosta vastaava *logback.xml*
 ovat pakattu jar-tiedostoon valmiiksi. 
 
 ## **Ohjelman käynnistäminen**

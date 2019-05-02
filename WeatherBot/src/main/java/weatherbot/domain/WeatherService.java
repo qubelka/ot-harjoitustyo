@@ -29,7 +29,7 @@ public class WeatherService {
     private LocationDao locationDao;
     
     /**
-     *
+     * Constructor creates a new WeatherService-object using parameters autowired by Spring.
      * @param weatherDao weatherDao stores and retrieves from the database weather information
      * @param userDao userDao stores and retrieves from the database user information
      * @param locationDao locationDao stores and retrieves from the database location information
@@ -41,7 +41,7 @@ public class WeatherService {
     }
     
     /**
-     * Returns weather information on a users request
+     * Returns weather information on a users request.
      * @param city the city for which the weather information is requested 
      * @param userID the id of the user who has made the weather request
      * @return returns String with weather information for requested city
@@ -104,7 +104,7 @@ public class WeatherService {
     }
     
     /**
-     * Returns user unit preferences 
+     * Returns user unit preferences.
      * @param userID the id of the user whose parameters need to be retrieved
      * @return returns 0 if user has not chosen unit, returns 1 for Celsius and 2 for Fahrenheit
      * @throws SQLException if user with requested id does not exist in the database
@@ -129,7 +129,7 @@ public class WeatherService {
     }
 
     /**
-     * Sets user's units option
+     * Sets user's units option.
      * @param userID the id of the user whose unit settings need to be changed
      * @param units units chosen (Celsius or Fahrenheit)
      * @throws SQLException if user with requested id does not exist in the database
@@ -160,7 +160,7 @@ public class WeatherService {
     }
 
     /**
-     * Returns all the locations saved by the user 
+     * Returns all the locations saved by the user.
      * @param userID the id of the user whose locations list need to be fetched
      * @return returns a list of locations saved by the user
      * @throws SQLException if user with requested id does not exist in the database
@@ -175,7 +175,7 @@ public class WeatherService {
     }
 
     /**
-     * Adds new location to the list of user's locations
+     * Adds new location to the list of user's locations.
      * @param city city to be added to the database
      * @param userID user to whose location list the city is added
      * @return returns error message if city name is formatted wrong or if the city is already on the list,

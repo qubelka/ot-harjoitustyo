@@ -81,7 +81,7 @@ public class UserDao implements Dao<User, Long> {
 
     /**
      * Loads users and their preferences from the database when the class is
-     * created
+     * created.
      *
      * @throws SQLException if database is not initialised
      */

@@ -100,6 +100,7 @@ public class LocationDao implements Dao<Location, Integer> {
     }
 
     /**
+     * Removes location from the database using a location id. 
      * @param key automatically generated id which each location receives after
      * it has been added to the database
      * @throws SQLException if object is not found by id
@@ -110,6 +111,7 @@ public class LocationDao implements Dao<Location, Integer> {
     }
 
     /**
+     * Returns a list with all the locations represented in the database.
      * @return returns a list of all the locations added to the database
      * @throws SQLException if the table Locations is not found
      */

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.After;
+import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -14,11 +15,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import weatherbot.domain.BotApp;
+import weatherbot.domain.FakeBotApp;
 import weatherbot.domain.Location;
 import weatherbot.domain.User;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = weatherbot.domain.BotApp.class)
+@SpringBootTest(classes = weatherbot.domain.FakeBotApp.class)
 public class LocationDaoTest {
     
     @Autowired

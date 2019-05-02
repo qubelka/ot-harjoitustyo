@@ -132,6 +132,7 @@ public class BotConfiguration {
     }
 
     /**
+     * Returns the name of the registered bot.
      * @return returns bot name
      */
     public String getBotName() {
@@ -139,6 +140,7 @@ public class BotConfiguration {
     }
 
     /**
+     * Return the token of the registered bot.
      * @return returns bot token
      */
     public String getBotToken() {
@@ -146,6 +148,7 @@ public class BotConfiguration {
     }
 
     /**
+     * Returns the url used to establish a connection to the database.
      * @return returns database url
      */
     public String getDbUrl() {
@@ -153,6 +156,7 @@ public class BotConfiguration {
     }
 
     /**
+     * Returns the username used to establish a connection to the database.
      * @return returns username for creating database connection
      */
     public String getDbUser() {
@@ -160,6 +164,7 @@ public class BotConfiguration {
     }
 
     /**
+     * Returns the password used to establish a connection to the database.
      * @return returns password for creating database connection
      */
     public String getDbPassword() {

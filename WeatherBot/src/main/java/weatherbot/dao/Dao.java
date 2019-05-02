@@ -14,7 +14,7 @@ public interface Dao<T, K> {
 
     /**
      * Creates an object in the database and returns its updated value (in case
-     * the id is generated automatically)
+     * the id is generated automatically).
      *
      * @param object object to be added to the database
      * @return returns the object added to the database
@@ -24,7 +24,7 @@ public interface Dao<T, K> {
     T create(T object) throws SQLException;
 
     /**
-     * Fetches an object from the database using the key
+     * Fetches an object from the database using the key.
      *
      * @param key long or integer value representing object id
      * @return returns object found from the database by the key
@@ -33,7 +33,7 @@ public interface Dao<T, K> {
     T read(K key) throws SQLException;
 
     /**
-     * Updates the database value of the existing object
+     * Updates the database value of the existing object.
      *
      * @param object object to be updated in the database
      * @return returns an updated object value
@@ -42,7 +42,7 @@ public interface Dao<T, K> {
     T update(T object) throws SQLException;
 
     /**
-     * Deletes the existing object from the database
+     * Deletes the existing object from the database.
      *
      * @param key long or integer value representing object id
      * @throws SQLException if object is not found by id
@@ -50,7 +50,7 @@ public interface Dao<T, K> {
     void delete(K key) throws SQLException;
 
     /**
-     * Lists all the objects found from the current database table
+     * Lists all the objects found from the current database table.
      *
      * @return list of objects added to the current database table
      * @throws SQLException if the table representing T objects is not found or
@@ -59,7 +59,7 @@ public interface Dao<T, K> {
     List<T> list() throws SQLException;
 
     /**
-     * Removes all the objects from the specified table
+     * Removes all the objects from the specified table.
      *
      * @throws SQLException if the table representing T objects is not found or
      * the database is not initialised
