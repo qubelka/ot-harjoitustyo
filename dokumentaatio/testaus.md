@@ -10,7 +10,7 @@ Sovelluslogiikkaa eli pakkauksen weatherbot.domain luokkia testataan sekä yksik
 
 Testeihin, joissa hyödynnetään Springin testaustyökaluja, on lisätty annotaatio @RunWith, joka lataa Springin konfiguraation parametrina annetun luokan käynnistyksen yhteydessä (luokan siis täytyy olla SpringBootApplication-luokka). Tässä tapauksessa parametrina annetaan juuri testejä varten luotu luokka FakeBotApp, joka ei vaadi käyttäjän syöttämiä komentoja toisin kuin alkuperäinen BotApp (tai tarkemmin BotUi, joka sulkee sovelluksen, kun käyttäjä syöttää komennon "close"). 
   
-![runwith]()
+![runwith](https://github.com/qubelka/ot-harjoitustyo/blob/master/laskarit/viikko7/runwith.png)
 
 Mockiton mockeja käytetään luokissa, joiden toiminta nojaa Telegram-apiin. Esimerkiksi luokka Bot vastaanottaa ja käsittelee telegram-botin kautta tulevia viestejä. Tämän toiminnon testaamista varten testeissä simuloidaan tilanteita, joissa botti saa erityyppisiä viestejä. Testit varmistavat, että botti reagoi viesteihin oikealla tavalla. Esimerkiksi, jos käyttäjä haluaa vaihtaa lämpötila-asteikon, botin täytyy palauttaa siihen liittyvä viesti ja näppäimistö, jonka avulla käyttäjä pääsee tekemään valintaansa.  
 
@@ -22,7 +22,7 @@ Springin testauksesta näyttää olevan kahdenlaisia versioita: joko testataan a
 
 Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus on 92% ja haarautumakattavuus 81%. 
 
-![tests]()
+![tests](https://github.com/qubelka/ot-harjoitustyo/blob/master/laskarit/viikko7/tests.png)
 
 Testaamatta jäi BotApp-luokka, koska testeissä sitä korvaa FakeBotApp. Lisäksi testaamatta jäivät hashCode() - kokonaan, equals() - tietyt tapaukset sekä tietyt poikkeustilanteet, esimerkiksi jos onUpdateReceived()-metodin suorituksen aikana ohjelma epäonnistuu luomaan json-objektin.  
 
