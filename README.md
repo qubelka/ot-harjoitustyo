@@ -13,6 +13,8 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/qubelka/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md)
+
 [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 
 ## **Releaset**
@@ -21,7 +23,7 @@ Sovellus näyttää tämänhetkisen lämpötilan, kosteusprosentin, pilvisyyden 
 
 [Viikko 6](https://github.com/qubelka/ot-harjoitustyo/releases/tag/viikko6)
 
-[loppupalautus](https://github.com/qubelka/ot-harjoitustyo/releases/tag/loppupalautus)
+[Loppupalautus](https://github.com/qubelka/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## **Duplikoidut viestit**
 
