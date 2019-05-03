@@ -45,5 +45,5 @@ Units -toiminnon avulla voi määrittää, mitä lämpötilayksikköä käyttä�
 
 ## **Sovelluksen sulkeminen**
 
-Sovelluksen pääsee sulkemaan painamalla CTRL+Z terminaalissa tai jos sovellus on avattu NetBeansin kautta, painamalla punaista ruutua. 
+Sovelluksen pääsee sulkemaan painamalla CTRL+Z terminaalissa tai jos sovellus on avattu NetBeansin kautta, kirjoittamalla komennon "close".
 
