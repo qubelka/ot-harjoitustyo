@@ -36,12 +36,20 @@ Sovellusta on testattu [käyttöohjeen](https://github.com/qubelka/ot-harjoitust
 
 ### **Toiminnallisuudet**
 
+<<<<<<< HEAD
 Kaikki [määrittelydokumentin](https://github.com/qubelka/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md) ja käyttöohjeen listaamat toiminnallisuudet (eli sään haku, käyttäjä- ja säätietojen tallennus, lämpötila-asteikon valinta) on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on myös kokeiltu syöttää botille virheellisiä komentoja, esimerkiksi väärin kirjoitettuja kaupunkien nimiä tai syötteitä, joilla voisi yrittää manipuloida url-kyselyä. 
+=======
+Kaikki [määrittelydokumentin](https://github.com/qubelka/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md) ja käyttöohjeen listaamat toiminnallisuudet (eli sään haku, käyttäjä- ja säätietojen tallennus, lämpötila-asteikon valinta) on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on myös kokeiltu syöttää botille virheellisiä komentoja, esimerkiksi väärin kirjoitettuja kaupunkien nimiä tai syötteitä, joilla voisi yrittää manipuloida url-kyselyjä. 
+>>>>>>> 73621e72999ddd9349b9c60fc6d4303a916e7885
 
 ## **Sovellukseen jääneet laatuongelmat**
 
 Sovelluksen logging.properties on määritelty tällä hetkellä niin, että vain info-viestit tulostetaan eli käyttäjä esimerkiksi saa ilmoituksen onnistuneesta database.properties -tiedoston lukemisesta. Osa poikkeus-tyyppisistä viesteistä (esimerkiksi jos käyttäjä kirjoittaa kaupungin nimen väärin) tulee tg-botin kautta, joten ne on tarkoituksella jätetty tulostamatta terminaalin ikkunaan. Tämän lisäksi on olemassa virhetyyppejä, joihin sovellus ei anna mitään järkeviä ilmoituksia. Tähän kategoriaan lukeutuvat esimerkiksi virheilmoitukset siitä, että tiedon lukeminen tietokannasta epäonnistui.  
 
+<<<<<<< HEAD
 Sovelluksen testit ajetaan samalla tietokannalla, joka on käytössä sovelluksessa, joten alkuperäinen tietokannassa oleva tieto voi vääristyä tai tuhoutua. Projektissa ei käytetä testitietokantaa, koska sovellus joka tapauksessa resettaa tietokannan botin joka käynnistyksen yhteydessä. 
 
  
+=======
+Sovelluksen testit ajetaan samalla tietokannalla, joka on käytössä sovelluksessa, joten alkuperäinen tietokannassa oleva tieto voi vääristyä tai tuhoutua. Projektissa ei käytetä testitietokantaa, koska sovellus joka tapauksessa resettaa tietokannan botin joka käynnistyksen yhteydessä. Tietokanta alustetaan joka kerta uudestaan muun muassa siitä syystä, että tällä hetkellä botista puuttuu toiminnallisuus, jonka avulla käyttäjä voisi poistaa tietokantaan aikaisemmin tallennettuja sijainteja. 
+>>>>>>> 73621e72999ddd9349b9c60fc6d4303a916e7885
