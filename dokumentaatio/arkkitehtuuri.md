@@ -4,10 +4,9 @@
 
 Koodin pakkausrakenne on seuraava: 
 
-![pakkauskaavio](https://github.com/qubelka/ot-harjoitustyo/blob/master/laskarit/viikko4/pakkauskaavio.jpg)
+![pakkauskaavio](https://github.com/qubelka/ot-harjoitustyo/blob/master/laskarit/viikko7/pakkauskaavio_updated.jpg)
 
-Pakkaus *ui* sisältää tekstikäyttöliittymän, *domain* sovelluslogiikan ja *dao* tietojen pysyväistallennuksesta 
-vastaavan koodin. Luokka *BotApp* käynnistää sovelluksen kutsumalla käyttöliittymästä vastaavan luokan *BotUi*.
+Pakkaus *configuration* sisältää botin ja tietokannan asetukset, *ui* sisältää tekstikäyttöliittymän, *domain* sovelluslogiikan ja *dao* tietojen pysyväistallennuksesta vastaavan koodin. Luokka *BotApp* käynnistää sovelluksen kutsumalla käyttöliittymästä vastaavan luokan *BotUi*.
 
 ## **Käyttöliittymä**
 
@@ -32,26 +31,30 @@ Näiden luokkien tarjoamia keskeisiä metodeja botin toiminnan kannalta ovat:
   * sendUnitsReply(Message received, String reply)  
   * getWeather(String city, long userID)
 
-*WeatherService* hakee säätietoja openweathermap-apista, lisäksi luokka pääsee käsiksi käyttäjiin ja säätietoihin tietojen tallennuksesta vastaavassa pakkauksessa *dao* sijaitsevien rajapinnan *dao*
-toteuttavien luokkien *WeatherDao* ja *UserDao* kautta. Luokkien toteutukset injektoidaan sovelluslogiikalle konstruktorikutsun yhteydessä.   
+*WeatherService* hakee säätietoja openweathermap-apista, lisäksi luokka pääsee käsiksi käyttäjiin ja säätietoihin tietojen tallennuksesta vastaavassa pakkauksessa *dao* sijaitsevien rajapinnan *dao* toteuttavien luokkien *WeatherDao*, *UserDao* ja *LocationDao* kautta. Luokkien toteutukset injektoidaan sovelluslogiikalle konstruktorikutsun yhteydessä.
 
 ## **Tietojen pysyväistallennus**
 
-Pakkauksen *dao* luokka *WeatherDao* huolehtii tietojen tallettamisesta h2-tietokantaan. Säätiedot talletetaan tietokantaan 10 minuutiksi. Tietoja poistetaan tietokannasta aikaleiman perusteella.  
-Luokka *UserDao* tallettaa käyttäjäkohtaisia tietoja tiedostoon. Luokat noudattavat Data Access Object-suunnittelumallia ja ne on tarvittaessa mahdollista korvata uusilla
-toteutuksilla, jos sovelluksen datan talletustapaa päätetään vaihtaa. Luokat on eristetty rajapinnan *dao* taakse. Dao-toteutuksen ansiosta sovelluslogiikan ei tarvitse käsitellä käyttäjien 
-tietoja tai säähän liittyvää tietoa suoraan, eikä tietää tiedon tallennuksen käytännön toteutuksesta.   
+Pakkauksen *dao* luokat *WeatherDao*, *UserDao* ja *LocationDao* huolehtivat tietojen tallettamisesta h2-tietokantaan. Säätiedot talletetaan tietokantaan 10 minuutiksi. Tietoja poistetaan tietokannasta aikaleiman perusteella. Käyttäjistä talletetaan käyttäjätunnus ja käyttäjän valitsema lämpötila-asteikko. Käyttäjä voi myös luoda listan sijainneistaan. Luokat noudattavat Data Access Object-suunnittelumallia ja ne on tarvittaessa mahdollista korvata uusilla toteutuksilla, jos sovelluksen datan talletustapaa päätetään vaihtaa. Luokat on eristetty rajapinnan *dao* taakse. Dao-toteutuksen ansiosta sovelluslogiikan ei tarvitse käsitellä käyttäjien tietoja tai säähän liittyvää tietoa suoraan, eikä tietää tiedon tallennuksen käytännön toteutuksesta.
+
+Alla on botin toimintaa kuvaava luokkakaavio: 
+
+![luokkakaavio](https://github.com/qubelka/ot-harjoitustyo/blob/master/laskarit/viikko7/taulut.jpg)
+
+Weather-taulu ei ole sidottu käyttäjään tai sijainteihin. Jos käyttäjä on tallentanut sijainteja tietokantaan, niin sää selviää kahdella tietokantakyselyllä: ensin haetaan sijaintitiedot ja sitten säätiedot, jos kyseisestä kaupungista on tehty hakuja viimeisen 10 minuutin aikana. Relaatiotietokannan sijasta tähän tarkoitukseen sopisi paremmin yksinkertaisempi NoSQL-tietokanta, mutta uuden tietokannan käyttöönotto vaikeuttaisi työn tarkistamista, joten tässä käytetään h2:ta, joka ei vaadi asennusta. 
 
 ### **Tiedostot**
 
-Sovellus tallettaa käyttäjien tiedot tiedostoon users.txt. Tiedostoon tulee tieto käyttäjän tunnuksesta sekä valitusta lämpötilayksiköstä. Tiedot talletetaan seuraavassa formaatissa
+Alun perin sovellus tallensi käyttäjien tietoja tiedostoon users.txt. Tiedostoon tuli tieto käyttäjän tunnuksesta sekä valitusta lämpötilayksiköstä. Tiedot tallennettiin seuraavassa formaatissa
 
 ```
 90908789,1
 23567891,2
 ```
 
-Pitempi long-tyyppinen numero viittaa käyttäjän tunnukseen ja integer lämpötilayksikköön (1 = °C, 2 = °F). Tunnuksen ja lämpötilayksikön väliin tulee pilkku. 
+Pitempi long-tyyppinen numero viittasi käyttäjän tunnukseen ja integer lämpötilayksikköön (1 = °C, 2 = °F). Tunnuksen ja lämpötilayksikön väliin tuli pilkku. 
+
+Kun sovellukseen lisättiin toiminto, jonka avulla käyttäjät pystyivät tallentamaan omia sijainteja, käyttöön tuli myös *LocationDao*, joka tallentaa nämä sijainnit. Koska sijainnit ovat yhteydessä käyttäjiin, sijaintitietoja oli kätevä hakea relaatiotietokannasta käyttäjätunnuksen perusteella. Tämän takia käyttäjille tehtiin oma *UserDao*. 
 
 
 ## **Päätoiminnallisuudet**
@@ -71,7 +74,13 @@ getWeather(String city, long userID)-metodia, joka ensin tarkistaa, onko kyseise
 löytyykö tietoa kyseisen käyttäjän valitsemasta lämpötilayksiköstä (*UserDao*). Jos tiedot löytyy, ne haetaan tietokannasta ja/tai tiedostosta ja palautetaan String-muodossa luokalle *Bot*. Jos 
 esimerkiksi säätietoja ei löydy tietokannasta, *WeatherService* lähettää url-kyselyn openweatherapi:lle. Kun *WeatherService* on palauttanut vastauksen, *Bot* lähettää tiedot eteenpäin luokalle 
 *ReplyMessage*, joka luo vastausviestin ja siihen liityvän graafisen näkymän. Tätä varten *ReplyMessage* kutsuu luokkaa *KeyboardBuilder*, joka palauttaa osaksi vastausviestiä liitettävän näppäimistön.
-Lopuksi onUpdateReceived() lähettää käyttäjälle valmiin vastausviestin ja jää odottamaan käyttäjän komentoa.       
+Lopuksi onUpdateReceived() lähettää käyttäjälle valmiin vastausviestin ja jää odottamaan käyttäjän komentoa.
+
+**uuden sijainnin lisääminen**
+
+Uuden sijainnin lisääminen onnistuu "my locations" -toiminnon avulla. "My locations" -valikossa käyttäjä voi selata aikaisemmin tallennettuja sijainteja tai luoda uusia. Uuden sijainnin pääsee lisäämään painamalla nappia "add new location", joka palauttaa vastauksena ForcedReply -tyyppisen näppäimistön. Käyttäjää pyydetään syöttämään lisättävän kaupungin nimen, jolloin onUpdateReceived() -metodi saa tiedon, että viestiin on vastattu ja käsittelee vastausta kaavion esittämällä tavalla: 
+
+![addLocation()](https://github.com/qubelka/ot-harjoitustyo/blob/master/laskarit/viikko7/new_location.png)
 
 ## **Ohjelman rakenteeseen jääneet heikkoudet** 
   

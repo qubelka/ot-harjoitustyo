@@ -25,4 +25,5 @@
 | 26.4. | 2 | lisätty javadocit + käyttöohje |
 | 27.4. | 3 | lisätty logger.properties; yritetty selvittää, miksi botti duplikoi viestejä; päivitetty arkkitehtuurikuvausta |  
 | 2.5. | 5 | lisätty FakeBotApp testejä varten; lisätty toiminto, joka sulkee spring-kontekstin; checkstyle+javadoc, korjattu virheitä; testaus.md |
-| yht | 57 |  |
+| 4.5. | 1 | dokumentaatio päivitetty | 
+| yht | 58 |  |
